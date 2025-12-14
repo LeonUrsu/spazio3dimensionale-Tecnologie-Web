@@ -1,0 +1,93 @@
+Requisiti Fondamentali -
+
+RF1 - Visualizzazione informazioni aziendali
+Il software deve mostrare: nome, localizzazione, logo, telefono, e-mail, ...) dell'azienda
+
+RF2 - Autenticazione degli utenti 
+Il software deve permettere di effettuare l'accesso agli utenti muniti di credenziali d'accesso
+
+RF3 - Visualizzazione Elenco Dei Centri Di Assistenza
+Il software deve permettere agli utenti di livello 1 di visualizzare tutti i centri di assistenza disponibili sul territorio con nome ed indirizzo di ciascuno
+
+RF4 - Visualizzazione Scheda Prodotto
+Il software deve permettere di vedere la scheda tecnica di un prodotto contenente: la foto del prodotto,
+la sua descrizione, le note tecniche d’uso e le modalità di installazione
+
+RF5 - Elenco Malfunzionamenti Del Prodotto 
+Il software deve permettere di visualizzare l’elenco dei malfunzionamenti e dei difetti riscontrati nel tempo per ciascun prodotto
+
+RF6 - Consultazione Della Soluzione Malfunzionamento
+Il software deve permettere di consultare la descrizione della soluzione relativa ad ogni malfunzionamento accessibile attraverso la scheda del malfunzionamento
+
+RF7 - Ricerca Prodotto Per Parola Chiave
+Il software deve permettere di eseguire la ricerca di un determinato prodotto attraverso una parola contenuta nel titolo o nella sua descrizione
+
+RF8 - Ricerca Prodotto Tramite WildCart 
+Il software deve permettere di eseguire la ricerca di un determinato prodotto attraverso l'uso del carattere wildcart "*" ammesso solamente come ultimo carattere: lav*
+
+RF9 - Logout Utente Autenticato
+Il software deve permettere agli utenti autenticati di effettuare il logout dal sistema.
+
+RF10 - Ricerca Malfunzionamento
+Il software deve permettere di cercare il malfunzionamento nel elenco, attraverso il titolo o una parola contenuta nella descrizione del malfunzionamento.
+
+RF11 - CRUD Malfunzionamenti
+Il software deve poter eseguire operazioni crud dei malfunzionamenti agli utenti di livello 3
+
+RF12 - CRUD Soluzioni 
+Il software deve poter eseguire operazioni crud delle soluzioni agli utenti di livello 3
+
+RF13 - Gestione Politiche Di Accesso
+Il software deve attribuire diversi permessi operativi ai diversi livelli di utenti del software
+
+RF14 - Visualizzazione Catalogo Prodotti
+Il software deve mostrare un catalogo dei prodotti al utente di livello 1
+
+RF15 - Consultazione Schede Complete
+Il software deve permettere di accedere alle schede con malfunzionamenti e soluzioni agli utenti di livello 2 e 3
+
+RF16 - CRUD Prodotti
+Il software deve permettere di eseguire agli utenti di livello 4 operazioni crud sui prodotti, ad esclusione dei malfunzionamenti e soluzioni 
+
+RF17 - CRUD Tecnici Centri Assistenza
+Il software deve permettere agli utenti di livello 4 di eseguire operazioni crud sui Tecnici dei centri di assistenza 
+
+RF18 - CRUD Tecnici Aziendali
+Il software deve permettere agli utenti di livello 4 di eseguire operazioni crud sui Tecnici dell'azienda 
+
+RF19 - Eliminazione Dati Associati Al Prodotto
+Il software deve eliminare i malfunzionamenti e le soluzioni associati ad un prodotto se il prodotto viene eliminato
+
+RF20 - Gestione Dati Tecnici Aziendali
+Il software deve gestire i dati dei tecnici dell'azienda caratterizzati da nome, cognome, username e password
+
+RF21 - Gestione Dati Tecnici Centri Assistenza
+Il software deve gestire i dati dei tecnici dei centri di assistenza caratterizzati da nome, cognome, data di nascita,
+specializzazione, nome ed indirizzo del centro di appartenenza, username e password
+
+Requisiti Non Fondamentali -
+
+RNF1 - Ripartizione Gestione Prodotti
+Il software deve permettere all'utente di livello 4 di ripartire i sottoinsiemi di prodotti ad ogni utente di livello 3
+
+RNF2 - Gestione Centri Assistenza
+Il software deve permettere all'utente di livello 4 di eseguire operazioni CRUD dei centri di assistenza
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+* text=auto eol=lf
+
+progetto3dimensionale_code/*.blade.php diff=html
+progetto3dimensionale_code/*.css diff=css
+progetto3dimensionale_code/*.html diff=html
+progetto3dimensionale_code/*.md diff=markdown
+progetto3dimensionale_code/*.php diff=php
+
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore

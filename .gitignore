@@ -1,0 +1,27 @@
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+progetto3dimensionale_code/node_modules
+progetto3dimensionale_code/public/build
+progetto3dimensionale_code/public/hot
+progetto3dimensionale_code/public/storage
+progetto3dimensionale_code/storage/*.key
+progetto3dimensionale_code/storage/pail
+progetto3dimensionale_code/vendor
+Homestead.json
+Homestead.yaml
+Thumbs.db
+
+#i miei file
+/personal
