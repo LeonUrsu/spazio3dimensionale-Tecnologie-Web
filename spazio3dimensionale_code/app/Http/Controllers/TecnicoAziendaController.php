@@ -8,23 +8,35 @@ class TecnicoAziendaController
 {
     public function mostraListaTecniciAzienda(): string
     {
-        return "mostraTecniciAzienda";
+        return "mostra la lista dei Tecnici Azienda";
     }
 
-    public function mostraTecnicoAzienda(): string
+    public function mostraTecnico(): string
     {
-        return "mostraTecnico";
+        return "mostra Tecnico azienda";
     }
 
-    public function aggiornaTecnicoAzienda(): string
+    public function mostraForm(): string
     {
-        return "aggiornaTecnicoAzienda";
+        return "aggiorna la form precompilata per aggiornare il TecnicoAzienda";
     }
 
-    public function assegnaProdottiTecnicoAzienda(): string
+    public function aggiornaTecnico(): string
     {
-        return "assegnaProdottiTecnicoAzienda";
+        return "aggiorna dati del TecnicoAzienda";
     }
+
+    public function mostraListaAssegna(): string
+    {
+        return "mostra lista dei prodotti con spunta per assegnaProdottiTecnicoAzienda";
+    }
+
+    public function assegnaProdotti(): string
+    {
+        return "salva le spunte di assegna prodotto al tecnico";
+    }
+
+
 
 
 

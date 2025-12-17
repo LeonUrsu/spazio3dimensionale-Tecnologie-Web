@@ -19,34 +19,46 @@ Route::get('/centri', [PublicController::class, 'mostraListaCentri'])
 Route::get('/catalogo', [PublicController::class, 'mostraCatalogoProdotti'])
     ->name('catalogoProdotti');
 
-Route::get('/prodotto', [ProdottoController::class, 'mostraProdotto'])
+Route::get('/prodotto/{idProdotto}', [ProdottoController::class, 'mostraProdotto'])
     ->name('prodotto');
 
-Route::get('/tecnici-centri', [TecnicoCentroController::class, 'mostraListaTecniciCentri'])
-    ->name('tencini.centri');
-    
-#TODO HERE
+Route::get('/prodotto', [ProdottoController::class, 'mostraFormCreaProdotto'])
+    ->name('prodotto.create');
+
+Route::post('/prodotto', [ProdottoController::class, 'creaProdotto'])
+    ->name('prodotto.create');
+
+Route::post('/prodotto', [ProdottoController::class, 'salvaProdotto'])
+    ->name('prodotto.store');
+
 
 
 Route::get('/tecnici-azienda', [TecnicoAziendaController::class, 'mostraListaTecniciAzienda'])
-    ->name('tecnici.azienda');
+    ->name('tecniciazienda.lsita');
 
 Route::get('/tecnici-azienda/{tecnicoAziendaId}', [TecnicoAziendaController::class, 'mostraTecnico'])
-    ->name('tecniciazienda');
+    ->name('tecniciazienda.dati');
 
-Route::put('/tecnici-azienda/{tecnicoAziendaId}', [TecnicoAziendaController::class, 'aggiornaTecnicoAzienda'])
-    ->name('tecniciazienda.update');
+Route::get('/tecnici-azienda/{tecnicoAziendaId}', [TecnicoAziendaController::class, 'mostraForm'])
+    ->name('tecniciazienda.form');
 
-Route::put('/tecnici-azienda/{tecnicoAziendaId}', [TecnicoAziendaController::class, 'assegnaProdottiTecnicoAzienda'])
+Route::put('/tecnici-azienda/{tecnicoAziendaId}', [TecnicoAziendaController::class, 'aggiornaTecnico'])
+    ->name('tecniciazienda.form.update');
+
+Route::get('/tecnici-azienda/{tecnicoAziendaId}', [TecnicoAziendaController::class, 'mostraListaAssegna'])
     ->name('tecniciazienda.assegna');
 
+Route::put('/tecnici-azienda/{tecnicoAziendaId}', [TecnicoAziendaController::class, 'assegnaProdotti'])
+    ->name('tecniciazienda.assegna.update');
 
 
-Route::get('/admin/tecnici-centri', [TecnicoCentroController::class, 'mostraTecniciCentri'])
+
+
+Route::get('/admin/tecnici-centri', [TecnicoCentroController::class, 'mostraListaTecniciCentri'])
     ->name('tecnicicentri');
 
 Route::get('/tecnici-centri/{tecnicoCentroId}', [TecnicoCentroController::class, 'mostraTecnico'])
-    ->name('tecniciazienda');
+    ->name('tecnicicentri');
 
 Route::put('/tecnici-centro/{tecnicoCentroId}', [TecnicoAziendaController::class, 'aggiornaTecnicoCentro'])
     ->name('tecnicicentro.update');
