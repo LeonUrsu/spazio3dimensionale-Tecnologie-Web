@@ -1,35 +1,63 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TecnicoCentroController;
 use App\Http\Controllers\TecnicoAziendaController;
+use App\Http\Controllers\CentroAssistenzaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdottoController;
+
 
 
 Route::get('/home', [PublicController::class, 'mostraHome'])->name('home');
 
 Route::get('/login', [PublicController::class, 'mostraLogin'])->name('login');
 
+
 Route::get('/centri', [PublicController::class, 'mostraListaCentri'])
-    ->name('listaCentri');
+    ->name('centri.lista');
 
-Route::get('/catalogo', [PublicController::class, 'mostraCatalogoProdotti'])
-    ->name('catalogoProdotti');
+Route::get('/centro/{centroId}', [CentroAssistenzaController::class, 'mostraCentro'])
+    ->name('centri.mostra');
 
-Route::get('/prodotto/{idProdotto}', [ProdottoController::class, 'mostraProdotto'])
-    ->name('prodotto');
+Route::get('/centro/{centroId}/aggiorna', [CentroAssistenzaController::class, 'mostraFormaggiorna'])
+    ->name('centri.formAggiorna');
 
-Route::get('/prodotto', [ProdottoController::class, 'mostraFormCreaProdotto'])
-    ->name('prodotto.create');
+Route::put('/centro/{centroId}', [CentroAssistenzaController::class, 'aggiornaCentro'])
+    ->name('centri.aggiorna');
 
-Route::post('/prodotto', [ProdottoController::class, 'creaProdotto'])
-    ->name('prodotto.create');
+Route::get('/centro/{centroId}/crea', [CentroAssistenzaController::class, 'mostraFormCrea'])
+    ->name('centri.formCrea');
 
-Route::post('/prodotto', [ProdottoController::class, 'salvaProdotto'])
-    ->name('prodotto.store');
+Route::post('/centro/crea', [CentroAssistenzaController::class, 'creaCentro'])
+    ->name('centri.crea');
+
+Route::delete('/centro/{centroId}/cancella', [CentroAssistenzaController::class, 'cancellaCentro'])
+    ->name('centri.cancella');
+
+
+
+Route::get('/prodotto', [ProdottoController::class, 'mostraListaProdotti'])
+    ->name('prodotto.lista');
+
+Route::get('/prodotto/{prodottoId}', [ProdottoController::class, 'mostraProdotto'])
+    ->name('prodotto.mostra');
+
+Route::get('/prodotto/{prodottoId}/aggiorna', [ProdottoController::class, 'mostraFormAggiorna'])
+    ->name('prodotto.formAggiorna');
+
+Route::put('/prodotto/{prodottoId}', [ProdottoController::class, 'aggiornaProdotto'])
+    ->name('prodotto.aggiorna');
+
+Route::get('/prodotto/{prodottoId}/crea', [ProdottoController::class, 'mostraFormCrea'])
+    ->name('prodotto.formCrea');
+
+Route::post('/prodotto/crea', [ProdottoController::class, 'creaProdotto'])
+    ->name('prodotto.crea');
+
+Route::delete('/prodotto/{prodottoId}/cancella', [ProdottoController::class, 'cancellaProdotto'])
+    ->name('prodotto.cancella');
 
 
 
@@ -85,23 +113,3 @@ Route::delete('/tecnici-centro/{tecnicoCentroId}/cancella', [TecnicoCentroContro
 
 
 
-Route::get('/prodotto', [ProdottoController::class, 'mostraListaProdotti'])
-    ->name('prodotto.lista');
-
-Route::get('/prodotto/{prodottoId}', [ProdottoController::class, 'mostraProdotto'])
-    ->name('prodotto.mostra');
-
-Route::get('/prodotto/{prodottoId}/aggiorna', [ProdottoController::class, 'mostraFormAggiorna'])
-    ->name('prodotto.formAggiorna');
-
-Route::put('/prodotto/{prodottoId}', [ProdottoController::class, 'aggiornaProdotto'])
-    ->name('prodotto.aggiorna');
-
-Route::get('/prodotto/{prodottoId}/crea', [ProdottoController::class, 'mostraFormCrea'])
-    ->name('prodotto.formCrea');
-
-Route::post('/prodotto/crea', [ProdottoController::class, 'creaProdotto'])
-    ->name('prodotto.crea');
-
-Route::delete('/prodotto/{prodottoId}/cancella', [ProdottoController::class, 'cancellaProdotto'])
-    ->name('prodotto.cancella');
