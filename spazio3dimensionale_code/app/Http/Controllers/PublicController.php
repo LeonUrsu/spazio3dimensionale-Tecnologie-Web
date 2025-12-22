@@ -23,4 +23,13 @@ class PublicController # Controller che gestisce le interazione degli utenti non
         return "login";
     }
 
+
+    public function testdb(): string{
+        return "test db";
+    }
+
+    public function testWeb(): string{
+        return "test web" . "<br>" . "altro";
+    }
+
 }

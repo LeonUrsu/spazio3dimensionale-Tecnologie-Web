@@ -8,7 +8,9 @@ class CentroAssistenzaController
 {
     public function mostraListaCentri(): string
     {
-        return "mostra la lista dei Tecnici Azienda";
+
+
+        return "mostra la lista "+ "<br>" + "dei Tecnici Azienda";
     }
 
     public function mostraCentro(): string
