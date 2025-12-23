@@ -19,8 +19,8 @@ class PublicController # Controller che gestisce le interazione degli utenti non
     }
 
     #Solo per utenti non autenticati
-    public function mostraLogin(): string{
-        return "login";
+    public function mostraLogin(){
+        return view("authentication/login");
     }
 
 

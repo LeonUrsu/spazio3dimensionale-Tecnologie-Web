@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admin', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->string('username', 50);
-            $table->string('password', 50);
-            $table->string('nome', 50);
-            $table->string('cognome', 50);
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('centro_id')->after('role')->nullable()->constrained('centri')->onDelete('cascade');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

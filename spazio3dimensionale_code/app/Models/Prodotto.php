@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Prodotto extends Model
 {
     protected $table = "prodotti";
-    protected $primaryKey = 'id_prodotto';
+    
 
     // prodId non modificabile da un HTTP Request (Mass Assignment)
     #protected $guarded = ['prodId'];
