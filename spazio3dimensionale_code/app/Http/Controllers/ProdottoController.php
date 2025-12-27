@@ -13,9 +13,9 @@ class ProdottoController
         #$this->_catalogModel = new Prodotto;
     }
 
-    public function mostraListaProdotti(): string
+    public function mostraCatalogoProdotti(): string
     {
-        return "mostra la pagina per creare il prodotto";
+        return "mostra il catalogo dei prodotti";
     }
 
     public function mostraProdotto(): string

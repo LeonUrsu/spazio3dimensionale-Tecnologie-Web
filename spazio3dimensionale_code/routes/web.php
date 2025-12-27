@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\TecnicoCentroController;
@@ -10,6 +11,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\DB;
 
+
+//per il paginator utilizzare semplicemente {{ $prodotti->links() }} 
+
+//per stampare velocemente sul browser  uso return dd($centrilist);
 
 //fare un meccanismo per reindirizzare un utente loggato alla home se prova ad andare in login
 /*
@@ -28,14 +33,16 @@ if ($request->user()->role === 'tecnico_azienda') {
 
 //visibile solo a utente non loggato
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [PublicController::class, 'mostraLogin'])->name('login');
+
+    Route::get('/login', [AuthenticationController::class, 'mostraLogin'])->name('loginPage');
+
+    Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 });
 
 //pubbliche
-Route::get('/home', [PublicController::class, 'mostraHome'])->name('home');
+Route::get('/', [PublicController::class, 'mostraHome'])->name('home');
 Route::get('/centri', [PublicController::class, 'mostraListaCentri'])->name('centri.lista');
-
-
+Route::POST('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
 
 Route::middleware(['auth', 'can:isAdmin'])->group(function () {
@@ -134,7 +141,7 @@ Route::middleware(['auth', 'can:any:isTecnicoCentro,isTecnicoAzienda'])->group(f
 
 
 //pubbliche
-Route::get('/prodotto/catalogo', [ProdottoController::class, 'mostraListaProdotti'])
+Route::get('/prodotto/catalogo', [ProdottoController::class, 'mostraCatalogoProdotti'])
     ->name('prodotto.lista');
 
 Route::get('/prodotto/mostra/{prodottoId}', [ProdottoController::class, 'mostraProdotto'])
@@ -187,10 +194,35 @@ Route::get('/force-login', function () {
     FacadesAuth::login(User::first());
     return "Ora sei loggato come Admin temporaneo!";
 });
+
+
+
+
+Route::get('/test', [PublicController::class, 'test'])
+    ->name('testdb');
+
+
+
 Route::post('/test/db', [PublicController::class, 'testdb'])
     ->name('testdb');
+
 Route::get('/test/web', [PublicController::class, 'testWeb'])
     ->name('testweb');
+
+
+Route::get('/test_form', [PublicController::class, 'getform'])
+    ->name('testform');
+
+
+Route::post('/test_form', [PublicController::class, 'postform'])
+    ->name('testform');
+
+
+
+
+
+
+
 Route::get('/test-db', function () {
     try {
         DB::connection()->getPdo();

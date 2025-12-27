@@ -7,12 +7,21 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController
 {
+
+    #Solo per utenti non autenticati
+    public function mostraLogin()
+    {
+        return view("authentication/login");
+    }
+
+
+
     public function login(Request $request)
     {
         // 1. Validazione
         $credentials = $request->validate([
-            'username' => ['required', 'username'],
-            'password' => ['required'],
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
         // 2. Tentativo di login
@@ -22,8 +31,8 @@ class AuthenticationController
             // 3. Reindirizzamento basato sul ruolo
             $user = Auth::user();
 
-            if ($user->role === 'admin' || $user->role === 'isTecnicoCentro' || $user->role === 'isTecnicoAzienda') {
-                return redirect()->intended('/home');
+            if ($user->role === 'isAdmin' || $user->role === 'isTecnicoCentro' || $user->role === 'isTecnicoAzienda') {
+                return redirect()->intended('/');
             }
             return redirect()->intended('/login');
         }
@@ -38,6 +47,6 @@ class AuthenticationController
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/login');
     }
 }
