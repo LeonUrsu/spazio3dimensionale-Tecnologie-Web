@@ -7,12 +7,7 @@ use Illuminate\Http\Request;
 
 class PublicController # Controller che gestisce le interazione degli utenti non loggati
 {
-    public function mostraListaCentri()
-    {
-        $centrilist =  Centro::paginate(2);
-        
-        return dd($centrilist);
-    }
+
 
     public function mostraHome()
     {

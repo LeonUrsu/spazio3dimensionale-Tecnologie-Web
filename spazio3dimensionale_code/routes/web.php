@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 //per il paginator utilizzare semplicemente {{ $prodotti->links() }} 
 
-//per stampare velocemente sul browser  uso return dd($centrilist);
+//per stampare velocemente sul browser  uso return dd($centrolist);
 
 //fare un meccanismo per reindirizzare un utente loggato alla home se prova ad andare in login
 /*
@@ -31,36 +31,38 @@ if ($request->user()->role === 'tecnico_azienda') {
 
 
 
-//visibile solo a utente non loggato
+//pubbliche, solo per utente non loggato
 Route::middleware('guest')->group(function () {
 
-    Route::get('/login', [AuthenticationController::class, 'mostraLogin'])->name('loginPage');
+    Route::get('/login', [AuthenticationController::class, 'mostraLogin'])->name('login');
 
     Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 });
 
 //pubbliche
 Route::get('/', [PublicController::class, 'mostraHome'])->name('home');
-Route::get('/centri', [PublicController::class, 'mostraListaCentri'])->name('centri.lista');
-Route::POST('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+Route::get('/centri', [CentroAssistenzaController::class, 'mostraListaCentri'])->name('centro.lista');
+Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
 
+
+//del Admin
 Route::middleware(['auth', 'can:isAdmin'])->group(function () {
     //rotte gestione centro assistenza
     Route::get('/centro/form/aggiorna/{centroId}', [CentroAssistenzaController::class, 'mostraFormAggiorna'])
-        ->name('centri.formAggiorna');
+        ->name('centro.formAggiorna');
 
     Route::put('/centro/aggiorna/{centroId}', [CentroAssistenzaController::class, 'aggiornaCentro'])
-        ->name('centri.aggiorna');
+        ->name('centro.aggiorna');
 
     Route::get('/centro/crea/form', [CentroAssistenzaController::class, 'mostraFormCrea'])
-        ->name('centri.formCrea');
+        ->name('centro.formCrea');
 
     Route::post('/centro/crea', [CentroAssistenzaController::class, 'creaCentro'])
-        ->name('centri.crea');
+        ->name('centro.crea');
 
     Route::delete('/centro/cancella/{centroId}', [CentroAssistenzaController::class, 'cancellaCentro'])
-        ->name('centri.cancella');
+        ->name('centro.cancella');
 
     //rotte gestione prodotti
     Route::get('/prodotto/form/aggiorna/{prodottoId}', [ProdottoController::class, 'mostraFormAggiorna'])
@@ -107,7 +109,7 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
     Route::put('/tecnico-azienda/prodotti/assegna/nuovi/{tecnicoAziendaId}', [TecnicoAziendaController::class, 'assegnaProdotti'])
         ->name('tecniciazienda.assegna.update');
 
-    //rotte gestione tecnici centri assistenza
+    //rotte gestione tecnici centro assistenza
     Route::get('/tecnico-centro', [TecnicoCentroController::class, 'mostraListaTecnici'])
         ->name('tecnicicentro.lista');
 
@@ -130,7 +132,7 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
         ->name('tecnicicentro.cancella');
 });
 
-
+//del Tecnico Azienda e Tecnico Centro Assistenza
 Route::middleware(['auth', 'can:any:isTecnicoCentro,isTecnicoAzienda'])->group(function () {
     Route::get('/prodotto/malfunzionamento/mostra/{prodottoId}', [ProdottoController::class, 'mostraMalfunzionamentoProdotto'])
         ->name('prodotto.mostra.mal');
@@ -141,7 +143,7 @@ Route::middleware(['auth', 'can:any:isTecnicoCentro,isTecnicoAzienda'])->group(f
 
 
 //pubbliche
-Route::get('/prodotto/catalogo', [ProdottoController::class, 'mostraCatalogoProdotti'])
+Route::get('/prodotto/catalogo', [ProdottoController::class, 'mostraListaProdotti'])
     ->name('prodotto.lista');
 
 Route::get('/prodotto/mostra/{prodottoId}', [ProdottoController::class, 'mostraProdotto'])
@@ -181,53 +183,4 @@ Route::middleware(['auth', 'can:isTecnicoAzienda'])->group(function () {
 
     Route::delete('/prodotto/soluzione/cancella/{prodottoId}', [ProdottoController::class, 'cancellaSol'])
         ->name('prodotto.cancella.sol');
-});
-
-
-
-
-
-//Rotte per testare, da eliminare 
-//fare ogni volta
-Route::get('/force-login', function () {
-    // Prende il primo utente che trova nel DB e ti logga
-    FacadesAuth::login(User::first());
-    return "Ora sei loggato come Admin temporaneo!";
-});
-
-
-
-
-Route::get('/test', [PublicController::class, 'test'])
-    ->name('testdb');
-
-
-
-Route::post('/test/db', [PublicController::class, 'testdb'])
-    ->name('testdb');
-
-Route::get('/test/web', [PublicController::class, 'testWeb'])
-    ->name('testweb');
-
-
-Route::get('/test_form', [PublicController::class, 'getform'])
-    ->name('testform');
-
-
-Route::post('/test_form', [PublicController::class, 'postform'])
-    ->name('testform');
-
-
-
-
-
-
-
-Route::get('/test-db', function () {
-    try {
-        DB::connection()->getPdo();
-        return "Connessione al database '" . DB::connection()->getDatabaseName() . "' riuscita!";
-    } catch (\Exception $e) {
-        return "Errore di connessione: " . $e->getMessage();
-    }
 });

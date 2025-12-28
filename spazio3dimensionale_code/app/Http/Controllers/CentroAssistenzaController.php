@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Centro;
 use Illuminate\Http\Request;
 
 class CentroAssistenzaController
 {
-    public function mostraListaCentri(): string
+    public function mostraListaCentri()
     {
+        $centriList = Centro::paginate(2);
 
-
-        return "mostra la lista "+ "<br>" + "dei Tecnici Azienda";
+        return view("public/centri")->with("centri", $centriList);
     }
 
     public function mostraCentro(): string

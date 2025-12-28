@@ -25,45 +25,38 @@ class AppServiceProvider extends ServiceProvider
         
         //TODO
         //questo codice serve per bypassare il login durante il test del sito, da eliminare
-        Gate::before(function ($user, $ability) {
+/*         Gate::before(function ($user, $ability) {
             return true;
         });
-
+ */
         Gate::define('isAdmin', function (User $user) {
             // Per ora solo true, dopo elimino
-            return true;
-
-            // dopo devo mettere: return $user->role === 'admin';
+            //return true;
+            // dopo devo mettere: 
+            return $user->role === 'isAdmin';
         });
 
         Gate::define('isTecnicoAzienda', function (User $user) {
             // Per ora solo true, dopo elimino
-            return true;
+            //return true;
 
-            // dopo devo mettere: return $user->role === 'tecnicoAzienda';
+            // dopo devo mettere: 
+            return $user->role === 'isTecnicoAzienda';
         });
 
         Gate::define('isTecnicoCentro', function (User $user) {
-            // Per ora solo true, dopo elimino
-            return true;
+            // Per ora solo true, dopo elimino: return true;
 
-            // dopo devo mettere: return $user->role === 'tecnicoCentro';
+            // dopo devo mettere: 
+            return $user->role === 'isTecnicoCentro';
         });
 
-        Gate::define('isUser', function (User $user) {
-            // Per ora solo true, dopo elimino
-            return true;
-
-            // dopo devo mettere: return $user->role === 'user';
-        });
 
 
         /*
         4. Come usarli nelle View (Blade)
         Il bello dei Gate è che funzionano anche per nascondere o mostrare pezzi di interfaccia. Nel tuo file .blade.php:
-
         HTML
-
         @can('isAdmin')
             <button>Elimina Database (Solo Admin)</button>
         @endcan

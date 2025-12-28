@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Prodotto;
 use Illuminate\Http\Request;
 
@@ -13,22 +14,23 @@ class ProdottoController
         #$this->_catalogModel = new Prodotto;
     }
 
-    public function mostraCatalogoProdotti(): string
+    public function mostraListaProdotti()
     {
-        return "mostra il catalogo dei prodotti";
+        $prodotti = Prodotto::paginate(2);
+
+        return view('public/catalogoProdotti')->with("prodotti", $prodotti);
     }
 
-    public function mostraProdotto(): string
+    public function mostraProdotto($id)
     {
-        $prodotto = Prodotto::find(1);
+        $prodotto = Prodotto::find($id);
 
-        #return "mostra il prodotto";
-        return $prodotto->marca;
+        return view('public/prodotto')->with("prodotto", $prodotto);
     }
 
-    public function mostraFormAggiorna(): string
+    public function mostraFormAggiorna()
     {
-        return "msotra il form aggiorna";
+        return view("formAggiornaProdotto");
     }
 
     public function aggiornaProdotto(): string
@@ -36,25 +38,28 @@ class ProdottoController
         return "aggiorna il prodotto nel DB";
     }
 
-    public function mostraFormCrea(): string
+    public function mostraFormCrea($id): string
     {
-        return "mostra la pagina per creare il prodotto";
+
+        $prodotto = Prodotto::findOrFail($id);
+
+        $prodotto->update($request->all());
+
+        return redirect()->route('prodotto.lista')->with('success', 'Aggiornato!');
     }
 
     public function creaProdotto(Request $request): string
     {
+
         $prodotto = Prodotto::create($request->all());
         #return "crea il prodotto nel DB e torna al catalogo";
         return redirect()->back()->with('success', 'Prodotto creato!');
     }
 
-    public function cancellaProdotto(): string
+    public function cancellaProdotto($id): string
     {
-        return "cancella il prodotto dal DB";
+        $prodotto = Prodotto::findOrFail($id);
+        $prodotto->delete();
+        return redirect()->route('prodotto.lista'); #->with('successo', 'Prodotto eliminato!');
     }
-
-
-    
-
-
 }
