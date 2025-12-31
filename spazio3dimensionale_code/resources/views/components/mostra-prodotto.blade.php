@@ -1,4 +1,4 @@
-<x-base>
+@props([$prodotto])
     <div>
         <div>
             <form action="{{route('prodotto.lista')}}" method=GET>
@@ -20,7 +20,7 @@
             @method('DELETE')
             <button type="submit">elimina Prodotto</button>
         </form>
-        <form action="{{route('prodotto.formAggiorna', $prodotto->id)}}" method=GET>
+        <form action="{{route('prodotto.form.aggiorna', $prodotto->id)}}" method=GET>
             <button type="submit">aggiorna Prodotto</button>
         </form>
         @endcan
@@ -36,4 +36,3 @@
         <button>aggiorna soluzione</button>
         @endcan
     </div>
-</x-base>

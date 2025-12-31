@@ -47,10 +47,7 @@ class TecnicoController
     }
 
 
-    public function cancellaTecnico(): string
-    {
-        return "creaTecnico TecnicoAzienda";
-    }
+
 
 
 

@@ -12,14 +12,14 @@ class ProdottoController
     public function mostraListaProdotti()
     {
         $prodotti = Prodotto::paginate(2);
-        return view('catalogo-prodotti')->with("prodotti", $prodotti);
+        return view('lista-prodotti')->with("prodotti", $prodotti);
     }
 
     #Metodo per trovare mostrare il prodotto all'utente
     public function mostraProdotto($id)
     {
         $prodotto = Prodotto::find($id);
-        return view('prodotto')->with("prodotto", $prodotto);
+        return view('mostra-prodotto')->with("prodotto", $prodotto);
     }
 
     #Metodo per mostrare un form aggiorna prodotto 

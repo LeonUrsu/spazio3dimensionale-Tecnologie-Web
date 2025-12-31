@@ -1,4 +1,3 @@
-<x-base>
 <div>
     <form action="{{route('home')}}">
         <button>Indietro</button>
@@ -22,4 +21,3 @@
         {{ $prodotti->links() }}
     </div>
 </div>
-</x-base>

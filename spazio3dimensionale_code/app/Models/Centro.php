@@ -8,4 +8,12 @@ class Centro extends Model
 {
         protected $table = "centri";
 
+        protected $fillable = [
+                'nome',   
+                'stato',
+                'città',
+                'cap',
+                'via',
+                'civico'
+        ];
 }

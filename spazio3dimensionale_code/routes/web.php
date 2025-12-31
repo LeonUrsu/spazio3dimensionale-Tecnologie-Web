@@ -57,7 +57,7 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
         ->name('centro.aggiorna');
 
     Route::get('/centro/crea/form', [CentroAssistenzaController::class, 'mostraFormCrea'])
-        ->name('centro.formCrea');
+        ->name('centro.form.crea');
 
     Route::post('/centro/crea', [CentroAssistenzaController::class, 'creaCentro'])
         ->name('centro.crea');
