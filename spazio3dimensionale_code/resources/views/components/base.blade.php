@@ -16,5 +16,3 @@
 
 </html>
 
-
-{{--potrei creare un componente per il form aggiorna e crea prodotto visto che sono simili--}}

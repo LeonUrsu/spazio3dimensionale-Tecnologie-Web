@@ -101,7 +101,7 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
 
     Route::put('/tecnico/aggiorna/{tecnicoId}', [TecnicoController::class, 'aggiornaTecnico'])
         ->name('tecnico.aggiorna');
-        
+
     Route::get('/tecnico-azienda/crea/form', [TecnicoAziendaController::class, 'mostraFormCrea'])
         ->name('tecnico.azienda.formCrea');
 
@@ -147,12 +147,12 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
 });
 
 //del Tecnico Azienda e Tecnico Centro Assistenza
-Route::middleware(['auth', 'can:any:isTecnicoCentro,isTecnicoAzienda'])->group(function () {
+Route::middleware(['auth', 'can:isTecnico'])->group(function () {
     Route::get('/prodotto/malsol/mostra/{malSolId}', [ProdottoController::class, 'mostraMalSolProdotto'])
-        ->name('prodotto.mostra.mal');
+        ->name('prodotto.malsol.mostra');
 
-    Route::get('/prodotto/malsol/mostra/{prodottoId}', [ProdottoController::class, 'mostraListaMalfunzionamentoProdotto'])
-        ->name('prodotto.mostra.mal.lista');
+    Route::get('/prodotto/malsol/lista/{prodottoId}', [ProdottoController::class, 'mostraListaMalSolProdotto'])
+        ->name('prodotto.malsol.lista');
 });
 
 
@@ -168,14 +168,14 @@ Route::get('/prodotto/mostra/{prodottoId}', [ProdottoController::class, 'mostraP
 //del Tecnico Azienda
 Route::middleware(['auth', 'can:isTecnicoAzienda'])->group(function () {
 
-    Route::get('/prodotto/malsol/crea/crea', [ProdottoController::class, 'mostraformCreaMal'])
-        ->name('prodotto.mal.crea.form');
+    Route::get('/prodotto/malsol/crea/crea', [ProdottoController::class, 'mostraformCreaMalSol'])
+        ->name('prodotto.form.crea.malsol');
 
-    Route::post('/prodotto/malsol/crea', [ProdottoController::class, 'creaMal'])
-        ->name('prodotto.mal.crea');
+    Route::post('/prodotto/malsol/crea', [ProdottoController::class, 'creaMalSol'])
+        ->name('prodotto.crea.malsol');
 
-    Route::get('/prodotto/malsol/form/aggiorna/{prodottoId}', [ProdottoController::class, 'mostraformAggiornaMal'])
-        ->name('prodotto.formAggiorna.malsol');
+    Route::get('/prodotto/malsol/form/aggiorna/{prodottoId}', [ProdottoController::class, 'mostraformAggiornaMalSol'])
+        ->name('prodotto.form.aggiorna.malsol');
 
     Route::put('/prodotto/malsol/aggiorna/{prodottoId}', [ProdottoController::class, 'aggiornaMalSol'])
         ->name('prodotto.aggiorna.malsol');

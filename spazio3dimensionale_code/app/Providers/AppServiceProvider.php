@@ -22,10 +22,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //sacrifico la velocità in favore della leggibilità
-        
+
         //TODO
         //questo codice serve per bypassare il login durante il test del sito, da eliminare
-/*         Gate::before(function ($user, $ability) {
+        /*         Gate::before(function ($user, $ability) {
             return true;
         });
  */
@@ -49,6 +49,10 @@ class AppServiceProvider extends ServiceProvider
 
             // dopo devo mettere: 
             return $user->role === 'isTecnicoCentro';
+        });
+
+        Gate::define('isTecnico', function ($user) {
+            return $user->can('isTecnicoAzienda') || $user->can('isTecnicoCentro');
         });
 
 
