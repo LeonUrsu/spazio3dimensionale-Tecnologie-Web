@@ -10,7 +10,7 @@ class CentroAssistenzaController
     #Metodo che recuperaa dal DB alcuni centri di assistenza disponibili, quando si richiama recupera i prossimi
     public function mostraListaCentri()
     {
-        $centri = Centro::paginate(10);
+        $centri = Centro::latest()->paginate(10);
         return view("lista-centri")->with("centri", $centri);
     }
 

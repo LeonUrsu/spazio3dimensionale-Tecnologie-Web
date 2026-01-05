@@ -25,8 +25,6 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '47e1160838b5e5a10346ac4084b58c23' => __DIR__ . '/..' . '/laravel/prompts/src/helpers.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '9d2b9fc6db0f153a0a149fefb182415e' => __DIR__ . '/..' . '/symfony/polyfill-php84/bootstrap.php',
         '476ca15b8d69b04665cd879be9cb4c68' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/functions.php',
@@ -38,6 +36,8 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
         '91892b814db86b8442ad76273bb7aec5' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Reflection/helpers.php',
         '493c6aea52f6009bab023b26c21a386a' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/functions.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
@@ -155,6 +155,7 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
         array (
             'Fruitcake\\Cors\\' => 15,
             'Faker\\' => 6,
+            'Facade\\IgnitionContracts\\' => 25,
         ),
         'E' =>
         array (
@@ -165,6 +166,7 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
             'Dotenv\\' => 7,
             'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Common\\Lexer\\' => 22,
+            'Diglactic\\Breadcrumbs\\' => 22,
             'Dflydev\\DotAccessData\\' => 22,
             'DeepCopy\\' => 9,
             'Database\\Seeders\\' => 17,
@@ -481,6 +483,10 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
+        'Facade\\IgnitionContracts\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/facade/ignition-contracts/src',
+        ),
         'Egulias\\EmailValidator\\' =>
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/src',
@@ -496,6 +502,10 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
         'Doctrine\\Common\\Lexer\\' =>
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/src',
+        ),
+        'Diglactic\\Breadcrumbs\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/diglactic/laravel-breadcrumbs/src',
         ),
         'Dflydev\\DotAccessData\\' =>
         array (
@@ -540,14 +550,34 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
 
     public static $classMap = array (
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
+        'App\\Http\\Controllers\\AuthenticationController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthenticationController.php',
         'App\\Http\\Controllers\\CentroAssistenzaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CentroAssistenzaController.php',
         'App\\Http\\Controllers\\ProdottoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProdottoController.php',
         'App\\Http\\Controllers\\PublicController' => __DIR__ . '/../..' . '/app/Http/Controllers/PublicController.php',
         'App\\Http\\Controllers\\TecnicoAziendaController' => __DIR__ . '/../..' . '/app/Http/Controllers/TecnicoAziendaController.php',
         'App\\Http\\Controllers\\TecnicoCentroController' => __DIR__ . '/../..' . '/app/Http/Controllers/TecnicoCentroController.php',
+        'App\\Http\\Controllers\\TecnicoController' => __DIR__ . '/../..' . '/app/Http/Controllers/TecnicoController.php',
+        'App\\Models\\Centro' => __DIR__ . '/../..' . '/app/Models/Centro.php',
+        'App\\Models\\Malsol' => __DIR__ . '/../..' . '/app/Models/Malsol.php',
         'App\\Models\\Prodotto' => __DIR__ . '/../..' . '/app/Models/Prodotto.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
+        'App\\View\\Components\\aggiunta-form-tecnico-azienda' => __DIR__ . '/../..' . '/app/View/Components/aggiunta-form-tecnico-azienda.php',
+        'App\\View\\Components\\aggiunta-form-tecnico-centro' => __DIR__ . '/../..' . '/app/View/Components/aggiunta-form-tecnico-centro.php',
+        'App\\View\\Components\\breadcrumbs' => __DIR__ . '/../..' . '/app/View/Components/breadcrumbs.php',
+        'App\\View\\Components\\button-tecnico-azienda' => __DIR__ . '/../..' . '/app/View/Components/button-tecnico-azienda.php',
+        'App\\View\\Components\\button-tecnico-centro' => __DIR__ . '/../..' . '/app/View/Components/button-tecnico-centro.php',
+        'App\\View\\Components\\crea-mal-sol-prodotto' => __DIR__ . '/../..' . '/app/View/Components/crea-mal-sol-prodotto.php',
+        'App\\View\\Components\\form-centro' => __DIR__ . '/../..' . '/app/View/Components/form-centro.php',
+        'App\\View\\Components\\form-prodotto' => __DIR__ . '/../..' . '/app/View/Components/form-prodotto.php',
+        'App\\View\\Components\\form-tecnico' => __DIR__ . '/../..' . '/app/View/Components/form-tecnico.php',
+        'App\\View\\Components\\formCreaProdotto' => __DIR__ . '/../..' . '/app/View/Components/formCreaProdotto.php',
+        'App\\View\\Components\\lista-centri' => __DIR__ . '/../..' . '/app/View/Components/lista-centri.php',
+        'App\\View\\Components\\lista-mal-prodotto' => __DIR__ . '/../..' . '/app/View/Components/lista-mal-prodotto.php',
+        'App\\View\\Components\\lista-prodotti' => __DIR__ . '/../..' . '/app/View/Components/lista-prodotti.php',
+        'App\\View\\Components\\mal-sol-prodotto' => __DIR__ . '/../..' . '/app/View/Components/mal-sol-prodotto.php',
+        'App\\View\\Components\\mostra-tecnico' => __DIR__ . '/../..' . '/app/View/Components/mostra-tecnico.php',
+        'App\\View\\Components\\prodotto' => __DIR__ . '/../..' . '/app/View/Components/prodotto.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',
@@ -667,7 +697,11 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
+        'Database\\Seeders\\CentriSeeder' => __DIR__ . '/../..' . '/database/seeders/CentriSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\MalSolProdottiSeeder' => __DIR__ . '/../..' . '/database/seeders/MalSolProdottiSeeder.php',
+        'Database\\Seeders\\ProdottiSeeder' => __DIR__ . '/../..' . '/database/seeders/ProdottiSeeder.php',
+        'Database\\Seeders\\UtentiSeeder' => __DIR__ . '/../..' . '/database/seeders/UtentiSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
@@ -710,6 +744,15 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
         'Dflydev\\DotAccessData\\Exception\\InvalidPathException' => __DIR__ . '/..' . '/dflydev/dot-access-data/src/Exception/InvalidPathException.php',
         'Dflydev\\DotAccessData\\Exception\\MissingPathException' => __DIR__ . '/..' . '/dflydev/dot-access-data/src/Exception/MissingPathException.php',
         'Dflydev\\DotAccessData\\Util' => __DIR__ . '/..' . '/dflydev/dot-access-data/src/Util.php',
+        'Diglactic\\Breadcrumbs\\Breadcrumbs' => __DIR__ . '/..' . '/diglactic/laravel-breadcrumbs/src/Breadcrumbs.php',
+        'Diglactic\\Breadcrumbs\\Exceptions\\BaseException' => __DIR__ . '/..' . '/diglactic/laravel-breadcrumbs/src/Exceptions/BaseException.php',
+        'Diglactic\\Breadcrumbs\\Exceptions\\DuplicateBreadcrumbException' => __DIR__ . '/..' . '/diglactic/laravel-breadcrumbs/src/Exceptions/DuplicateBreadcrumbException.php',
+        'Diglactic\\Breadcrumbs\\Exceptions\\InvalidBreadcrumbException' => __DIR__ . '/..' . '/diglactic/laravel-breadcrumbs/src/Exceptions/InvalidBreadcrumbException.php',
+        'Diglactic\\Breadcrumbs\\Exceptions\\UnnamedRouteException' => __DIR__ . '/..' . '/diglactic/laravel-breadcrumbs/src/Exceptions/UnnamedRouteException.php',
+        'Diglactic\\Breadcrumbs\\Exceptions\\ViewNotSetException' => __DIR__ . '/..' . '/diglactic/laravel-breadcrumbs/src/Exceptions/ViewNotSetException.php',
+        'Diglactic\\Breadcrumbs\\Generator' => __DIR__ . '/..' . '/diglactic/laravel-breadcrumbs/src/Generator.php',
+        'Diglactic\\Breadcrumbs\\Manager' => __DIR__ . '/..' . '/diglactic/laravel-breadcrumbs/src/Manager.php',
+        'Diglactic\\Breadcrumbs\\ServiceProvider' => __DIR__ . '/..' . '/diglactic/laravel-breadcrumbs/src/ServiceProvider.php',
         'Doctrine\\Common\\Lexer\\AbstractLexer' => __DIR__ . '/..' . '/doctrine/lexer/src/AbstractLexer.php',
         'Doctrine\\Common\\Lexer\\Token' => __DIR__ . '/..' . '/doctrine/lexer/src/Token.php',
         'Doctrine\\Inflector\\CachedWordInflector' => __DIR__ . '/..' . '/doctrine/inflector/src/CachedWordInflector.php',
@@ -889,6 +932,12 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
         'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/QuotedString.php',
         'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/TLD.php',
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/Warning.php',
+        'Facade\\IgnitionContracts\\BaseSolution' => __DIR__ . '/..' . '/facade/ignition-contracts/src/BaseSolution.php',
+        'Facade\\IgnitionContracts\\HasSolutionsForThrowable' => __DIR__ . '/..' . '/facade/ignition-contracts/src/HasSolutionsForThrowable.php',
+        'Facade\\IgnitionContracts\\ProvidesSolution' => __DIR__ . '/..' . '/facade/ignition-contracts/src/ProvidesSolution.php',
+        'Facade\\IgnitionContracts\\RunnableSolution' => __DIR__ . '/..' . '/facade/ignition-contracts/src/RunnableSolution.php',
+        'Facade\\IgnitionContracts\\Solution' => __DIR__ . '/..' . '/facade/ignition-contracts/src/Solution.php',
+        'Facade\\IgnitionContracts\\SolutionProviderRepository' => __DIR__ . '/..' . '/facade/ignition-contracts/src/SolutionProviderRepository.php',
         'Faker\\Calculator\\Ean' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Ean.php',
         'Faker\\Calculator\\Iban' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Iban.php',
         'Faker\\Calculator\\Inn' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Inn.php',

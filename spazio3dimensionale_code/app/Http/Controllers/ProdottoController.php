@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Malsol;
 use App\Models\Prodotto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProdottoController
 {
     #Metodo per mostrare un catalogo dei prodotti all'utente, i prodotti sono paginati
     public function mostraListaProdotti()
     {
-        $prodotti = Prodotto::paginate(10);
+        $prodotti = Prodotto::latest()->paginate(10);
         return view('lista-prodotti')->with("prodotti", $prodotti);
     }
 
@@ -54,11 +55,26 @@ class ProdottoController
         return view('form-aggiorna-prodotto')->with("prodotto", $prodotto);
     }
 
-    #Metodo per aggiornare all'interno del DB i dati del prodotto che sono stati aggiornati attraverso il web form
+    # Metodo per aggiornare all'interno del DB i dati del prodotto che sono stati aggiornati attraverso il web form, la foto viene sovrascritta sollo
+    # se presente nella request mentre la vecchia viene eliminata
     public function aggiornaProdotto(Request $request, $id)
     {
         $prodotto = Prodotto::findOrFail($id);
-        $prodotto->update($request->all());
+        $dati = $request->all();    //TODO da validare
+        if ($request->hasFile('immagine')) {
+            $vecchioPercorso = public_path('storage/immagini' . $prodotto->immagine);
+            if (File::exists($vecchioPercorso) && !empty($prodotto->immagine)) {
+                File::delete($vecchioPercorso);
+            }
+            $file_caricato = $request->file('immagine');
+            $nomeImmagine = time() . '.' . $file_caricato->getClientOriginalExtension();
+            $file_caricato->move(public_path('storage/immagini'), $nomeImmagine);
+            $dati['immagine_path'] = $nomeImmagine;
+        } else {
+            unset($dati['immagine']);
+        }
+        $prodotto = Prodotto::findOrFail($id);
+        $prodotto->update($dati);
         return redirect()->route('prodotto.lista');
     }
 
@@ -71,11 +87,13 @@ class ProdottoController
     #Metodo per creare all'interno del DB un prodotto con dati compilati attraverso il web form
     public function creaProdotto(Request $request)
     {
+        //TODO da validare
         $dati = $request->all();
-        if ($request->hasFile('immagine')) {
-            // Salva il file nella cartella 'public/prodotti' e si ottiene il percorso Esempio: prodotti/abc123.jpg
-            $percorso = $request->file('immagine')->store('immagini', 'public');
-            $dati['immagine_path'] = $percorso;
+         if ($request->hasFile('immagine')) {
+            $file_caricato = $request->file('immagine');
+            $nomeImmagine = time() . '.' . $file_caricato->getClientOriginalExtension();
+            $file_caricato->move(public_path('storage/immagini'), $nomeImmagine);
+            $dati['immagine_path'] = $nomeImmagine;
         }
         Prodotto::create($dati);
         return redirect()->route('prodotto.lista');

@@ -11,13 +11,13 @@ class TecnicoController
     public function mostraListaTecniciAzienda()
     {
         //TODO mettere limite a quanti tecnici da recuperare        
-        $tecniciAzienda = User::where('role', 'isTecnicoAzienda')->get();
+        $tecniciAzienda = User::latest()->where('role', 'isTecnicoAzienda')->paginate();
         return view('lista-tecnico-azienda')->with("tecniciCentri", $tecniciAzienda);;
     }
 
     public function mostraListaTecniciCentri()
     { //TODO mettere limite a quanti tecnici da recuperare 
-        $tecniciCentri = User::where('role', 'isTecnicoCentro')->get();
+        $tecniciCentri = User::latest()->where('role', 'isTecnicoCentro')->paginate();
         return view('lista-tecnico-centro')->with("tecniciCentri", $tecniciCentri);
     }
 
