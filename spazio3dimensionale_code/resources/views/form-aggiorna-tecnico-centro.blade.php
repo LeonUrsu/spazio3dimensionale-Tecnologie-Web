@@ -1,6 +1,5 @@
-
 <x-base>
-    <x-form-crea-tecnico rotta="tecnico.centro.aggiorna" :$tecnico>
-        <x-form-crea-tecnico-centro />
-    </x-form-crea-tecnico>
+    <x-form-tecnico rotta="tecnico.centro.aggiorna" metodo='PUT' :$tecnico>
+        <x-form-tecnico-centro :$centri :$tecnico />
+    </x-form-tecnico>
 </x-base>

@@ -83,7 +83,7 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
 
 
     //rotte gestione tecnici azienda
-    Route::get('/tecnico/azienda', [TecnicoController::class, 'mostraListaTecniciAzienda'])
+    Route::get('/tecnico/azienda', [TecnicoAziendaController::class, 'mostraListaTecnici'])
         ->name('tecnico.azienda.lista');
 
     Route::get('/tecnico/azienda/mostra/{tecnicoAziendaId}', [TecnicoAziendaController::class, 'mostraTecnico'])
@@ -99,13 +99,13 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
     Route::get('/tecnico/aggiorna/form/{tecnicoId}', [TecnicoAziendaController::class, 'mostraFormAggiorna'])
         ->name('tecnico.azienda.form.aggiorna');
 
-    Route::put('/tecnico/aggiorna/{tecnicoId}', [TecnicoController::class, 'aggiornaTecnico'])
-        ->name('tecnico.aggiorna');
+    Route::put('/tecnico/aggiorna/{tecnicoId}', [TecnicoAziendaController::class, 'aggiornaTecnico'])
+        ->name('tecnico.azienda.aggiorna');
 
     Route::get('/tecnico/azienda/crea/form', [TecnicoAziendaController::class, 'mostraFormCrea'])
         ->name('tecnico.azienda.formCrea');
 
-    Route::post('/tecnico/azienda/crea', [TecnicoController::class, 'creaTecnico'])
+    Route::post('/tecnico/azienda/crea', [TecnicoAziendaController::class, 'creaTecnico'])
         ->name('tecnico.azienda.crea');
 
     Route::get('/tecnico/crea/form', [TecnicoAziendaController::class, 'mostraFormCrea'])
@@ -124,7 +124,7 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
         ->name('tecnico.azienda.assegna.update');
 
     //rotte gestione tecnici centro assistenza
-    Route::get('/tecnico/centro', [TecnicoController::class, 'mostraListaTecniciCentri'])
+    Route::get('/tecnico/centro', [TecnicoCentroController::class, 'mostraListaTecnici'])
         ->name('tecnico.centro.lista');
 
     Route::get('/tecnico/centro/mostra/{tecnicoCentroId}', [TecnicoCentroController::class, 'mostraTecnico'])
@@ -139,7 +139,7 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
     Route::get('/tecnico/centro/form/crea', [TecnicoCentroController::class, 'mostraFormCrea'])
         ->name('tecnico.centro.form.crea');
 
-    Route::post('/tecnico/centro/crea', [TecnicoController::class, 'creaTecnico'])
+    Route::post('/tecnico/centro/crea', [TecnicoCentroController::class, 'creaTecnico'])
         ->name('tecnico.centro.crea');
 
     Route::delete('/tecnico/centro/cancella/{tecnicoCentroId}', [TecnicoCentroController::class, 'cancellaTecnico'])

@@ -1,5 +1,5 @@
 <x-base>
-    <x-form-crea-tecnico rotta="tecnico.centro.crea">
-        <x-form-crea-tecnico-centro />
-    </x-form-crea-tecnico>
+    <x-form-tecnico rotta="tecnico.centro.crea">
+        <x-form-tecnico-centro :$centri />
+    </x-form-tecnico>
 </x-base>

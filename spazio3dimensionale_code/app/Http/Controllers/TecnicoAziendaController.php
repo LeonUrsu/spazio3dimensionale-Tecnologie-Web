@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 class TecnicoAziendaController
 {
 
-    public function mostraListaTecnici(): string
+    public function mostraListaTecnici()
     {
-        return "mostra la lista dei Tecnici Azienda";
+        //TODO mettere limite a quanti tecnici da recuperare        
+        $tecnici = User::latest()->where('role', 'isTecnicoAzienda')->paginate(10);
+        return view('lista-tecnico-azienda')->with("tecnici", $tecnici);;
     }
 
     #Metodo per trovare il tecnico nel DB e ritornarlo alla view per la visualizzazione
@@ -47,7 +49,6 @@ class TecnicoAziendaController
         }
 
         $tecnico->save();
-
         return redirect()->route('tecnico.azienda.lista')->with('info', 'Tecnico aggiornato correttamente!');
     }
 
@@ -73,7 +74,8 @@ class TecnicoAziendaController
     {
         $validated = $request->validate([
             'nome' => 'required|string',
-            'email' => 'required|email|unique:users,email',
+            'cognome' => 'required|string',
+            'email' => 'nullable|email|unique:users,email',
             'username' => 'required|min:4',
             'password' => 'required|min:6'
         ]);
@@ -83,7 +85,7 @@ class TecnicoAziendaController
     }
 
     #Metodo per cancellare un tencnico azienda dal db
-    public function cancellaTecnico($id): string
+    public function cancellaTecnico($id)
     {
         $utente = User::findOrFail($id);
         $utente->delete();

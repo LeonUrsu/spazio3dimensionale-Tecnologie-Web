@@ -1,3 +1,3 @@
 <x-base>
-        <x-form-crea-tecnico rotta="tecnico.azienda.aggiorna" :$tecnico />
+        <x-form-tecnico rotta="tecnico.azienda.aggiorna" metodo='PUT' :$tecnico />
 </x-base>

@@ -30,7 +30,6 @@ class ProdottoController
         */
         if (str_ends_with($parola, '*')) {
             $base = rtrim($parola, '*');
-            $prodotti = Prodotto::where('descrizione', 'LIKE', '%' . $base . '%')->get();
             $prodotti = Prodotto::where('descrizione', 'LIKE', '%' . $base . '%')->paginate();
         } else {
             #$prodotti = Prodotto::where('descrizione', 'REGEXP', '[[:<:]]' . $parola . '[[:>:]]')->get();   // dobbiamo cercare "lav" come parola isolata (non dentro altre parole)

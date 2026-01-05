@@ -14,4 +14,7 @@
      </h2>
      <br>
      @endforeach
+     <div>
+         {{ $tecnici->links() }}
+     </div>
  </div>
