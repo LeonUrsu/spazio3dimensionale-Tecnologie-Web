@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Services\TecnicoService;
-use Illuminate\Http\Request;
 
 class TecnicoController
 {
@@ -45,13 +43,6 @@ class TecnicoController
     {
         return "mostraFormCrea TecnicoAzienda";
     }
-
-
-
-
-
-
-
 
 
 }

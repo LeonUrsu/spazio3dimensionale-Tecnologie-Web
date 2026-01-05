@@ -89,7 +89,7 @@ class ProdottoController
     {
         //TODO da validare
         $dati = $request->all();
-         if ($request->hasFile('immagine')) {
+        if ($request->hasFile('immagine')) {
             $file_caricato = $request->file('immagine');
             $nomeImmagine = time() . '.' . $file_caricato->getClientOriginalExtension();
             $file_caricato->move(public_path('storage/immagini'), $nomeImmagine);
@@ -102,9 +102,12 @@ class ProdottoController
     #Metodo per eliminare un prodotto dal DB specificando un id del prodotto utilizzato come chiave primaria
     public function cancellaProdotto($id)
     {
-        #TODO cancella prodotto deve anche eliminare i malsol associati al prodotto dal DB 
-        #$prodotto = Prodotto::findOrFail($id);
-        #$prodotto->delete();
+        $prodotto = Prodotto::findOrFail($id);
+        $percorsoFoto = public_path('storage/immagini/' . $prodotto->immagine_path);
+        if (!empty($prodotto->immagine_path) && File::exists($percorsoFoto)) {
+            File::delete($percorsoFoto);
+        }
+        $prodotto->delete();
         return redirect()->route('prodotto.lista');
     }
 
@@ -154,9 +157,9 @@ class ProdottoController
     #Metodo per cancellare i malfunzionamenti e la soluzione associata nel DB di un prodotto attarverso un id del prodotto
     public function cancellaMalSol(Request $request, $id)
     {
-        //TODO da cancellare i commento per farla funzionare
+
         $malSol = Malsol::findOrFail($id);
-        #$malSol->delete();
+        $malSol->delete();
         return redirect()->route('prodotto.malsol.lista', ['prodottoId' => $malSol->prodotto_id])->with('success', 'Centro aggiornato!');
     }
 

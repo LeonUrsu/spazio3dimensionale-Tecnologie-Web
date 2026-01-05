@@ -76,11 +76,12 @@ class TecnicoCentroController
 
         return redirect()->route('tecnico.centro.lista')->with('success', 'Tecnico creato con successo!');
     }
-    
-    #Meotdo per cancellare l'oggetto dalla tabella nel DB
-    public function cancellaTecnico($id)
+
+    #Metodo per cancellare un tencnico centro dal db
+    public function cancellaTecnico($id): string
     {
-        //TODO da attivare User::destroy($id);
-        return view('tecnico-centro.lista');
+        $utente = User::findOrFail($id);
+        $utente->delete();
+        return redirect()->route('tecnico.centro.lista');
     }
 }

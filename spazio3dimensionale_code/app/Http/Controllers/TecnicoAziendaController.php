@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TecnicoAziendaController
 {
-    
+
     public function mostraListaTecnici(): string
     {
         return "mostra la lista dei Tecnici Azienda";
@@ -68,35 +68,25 @@ class TecnicoAziendaController
         return view('form-crea-tecnico-azienda');
     }
 
-
-    public function cancellaTecnico(): string
-    {
-        return "creaTecnico TecnicoAzienda";
-    }
-
-
-
-
     #Metodo che crea un tencico nel db tramite dalla request, 
     public function creaTecnico(Request $request)
     {
-        /*         // 1. Validazione (opzionale ma raccomandata)
-        $request->validate([
+        $validated = $request->validate([
             'nome' => 'required|string',
-            'email' => 'required|email|unique:tecnicos,email',
+            'email' => 'required|email|unique:users,email',
+            'username' => 'required|min:4',
             'password' => 'required|min:6'
-        ]); */
-
-        $tecnico = new User();
-        $tecnico->nome = $request->nome;
-        $tecnico->cognome = $request->cognome;
-        $tecnico->data_di_nascita = $request->data_di_nascita;
-        $tecnico->email = $request->email;
-        $tecnico->username = $request->username;
-        $tecnico->password = bcrypt($request->password);
-
-        $tecnico->save();
-
+        ]);
+        $validated['role'] = 'isTecnicoAzienda';
+        User::create($validated);
         return redirect()->route('tecnico.azienda.lista')->with('success', 'Tecnico creato con successo!');
+    }
+
+    #Metodo per cancellare un tencnico azienda dal db
+    public function cancellaTecnico($id): string
+    {
+        $utente = User::findOrFail($id);
+        $utente->delete();
+        return redirect()->route('tecnico.azienda.lista');
     }
 }
