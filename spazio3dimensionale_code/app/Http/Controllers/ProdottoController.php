@@ -9,34 +9,23 @@ use Illuminate\Support\Facades\File;
 
 class ProdottoController
 {
-    #Metodo per mostrare un catalogo dei prodotti all'utente, i prodotti sono paginati
-    public function mostraListaProdotti()
-    {
-        $prodotti = Prodotto::latest()->paginate(10);
-        return view('lista-prodotti')->with("prodotti", $prodotti);
-    }
+
 
     //TODO da sistemare e da riprogettare
     #Metodo per mostrare un catalogo dei prodotti all'utente filtrati tramite un termine di ricerca o un temine di ricerca parziale
-    public function mostraListaProdottiCercati(Request $request)
+    public function mostraListaProdotti(Request $request)
     {
         $parola = $request->input('ricerca'); //recupero della parola dal campo ''desc
-        //RIcorda che DB usa % al posto di *
-        /*         if (str_ends_with($parola, '*')) {
-            $ricerca = str_replace('*', '%', $parola);
-        } else {
-            $ricerca = '%' . $parola . ' %';
+        if (empty(trim($parola))) {
+            $prodotti = Prodotto::paginate(10);
+            return view('lista-prodotti', compact('prodotti'))->with('parola', '');
         }
-        */
         if (str_ends_with($parola, '*')) {
             $base = rtrim($parola, '*');
-            $prodotti = Prodotto::where('descrizione', 'LIKE', '%' . $base . '%')->paginate();
+            $prodotti = Prodotto::where('descrizione', 'LIKE', '%' . $base . '%')->paginate(10);
         } else {
-            #$prodotti = Prodotto::where('descrizione', 'REGEXP', '[[:<:]]' . $parola . '[[:>:]]')->get();   // dobbiamo cercare "lav" come parola isolata (non dentro altre parole)
-            $prodotti = Prodotto::where('descrizione', 'REGEXP', '[[:<:]]' . $parola . '[[:>:]]')->paginate();   // dobbiamo cercare "lav" come parola isolata (non dentro altre parole)
+            $prodotti = Prodotto::where('descrizione', 'REGEXP', '[[:<:]]' . $parola . '[[:>:]]')->paginate(10);   // dobbiamo cercare "lav" come parola isolata (non dentro altre parole)
         }
-        #$prodotti = Prodotto::where('descrizione', 'LIKE', $ricerca)->get();
-        #dd($prodotti);
         return view('lista-prodotti')->with("prodotti", $prodotti);
     }
 

@@ -1,6 +1,6 @@
 <div>
-    {{ Breadcrumbs::render() }}
-    <form action="{{ route('prodotto.lista.ricerca') }}" method="GET">
+    {{ Breadcrumbs::render('prodotto.lista') }}
+    <form action="{{ route('prodotto.lista') }}" method="GET">
         <input type="text"
             name="ricerca"
             placeholder="Cerca descrizione (es. lav*)..."

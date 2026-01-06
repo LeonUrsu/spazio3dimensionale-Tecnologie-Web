@@ -163,9 +163,6 @@ Route::middleware(['auth', 'can:isTecnico'])->group(function () {
 Route::get('/prodotto/catalogo', [ProdottoController::class, 'mostraListaProdotti'])
     ->name('prodotto.lista');
 
-Route::get('/prodotto/catalogo/ricerca', [ProdottoController::class, 'mostraListaProdottiCercati'])
-    ->name('prodotto.lista.ricerca');
-
 Route::get('/prodotto/mostra/{prodottoId}', [ProdottoController::class, 'mostraProdotto'])
     ->name('prodotto.mostra');
 
