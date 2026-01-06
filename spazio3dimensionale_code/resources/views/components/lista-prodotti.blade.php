@@ -18,7 +18,7 @@
     </form>
     @endcan
     <br>
-    @foreach ($prodotti as $prodotto )
+    @forelse ($prodotti as $prodotto )
     <div style="display: flex; gap: 20px; align-items: center;">
         <div>
             @if($prodotto->immagine_path)
@@ -33,7 +33,9 @@
         </form>
     </div>
     <br>
-    @endforeach
+    @empty
+    <li>Nessun dato trovato.</li>
+    @endforelse
     <div>
         {{ $prodotti->links() }}
     </div>

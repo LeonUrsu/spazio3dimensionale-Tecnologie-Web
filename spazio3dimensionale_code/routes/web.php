@@ -148,7 +148,7 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
 
 //del Tecnico Azienda e Tecnico Centro Assistenza
 Route::middleware(['auth', 'can:isTecnico'])->group(function () {
-    Route::get('/prodotto/malsol/mostra/{prodottoId}', [ProdottoController::class, 'mostraMalSolProdotto'])
+    Route::get('/prodotto/malsol/mostra/{malsolId}', [ProdottoController::class, 'mostraMalSolProdotto'])
         ->name('prodotto.malsol.mostra');
 
     Route::get('/prodotto/malsol/lista/{prodottoId}', [ProdottoController::class, 'mostraListaMalSolProdotto'])

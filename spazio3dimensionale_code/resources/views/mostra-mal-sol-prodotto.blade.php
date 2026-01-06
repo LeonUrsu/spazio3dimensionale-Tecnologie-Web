@@ -1,3 +1,3 @@
  <x-base>
-     <x-mostra-mal-sol-prodotto :$malSol :$prodotto/>
+     <x-mostra-mal-sol-prodotto :$malsol :$prodotto/>
  </x-base>

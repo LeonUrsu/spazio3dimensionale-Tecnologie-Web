@@ -22,7 +22,7 @@
     <div>
         <p> Titolo : {{$mal->titolo}}</p>
         <p> Descrizione : {{$mal->mal}}</p>
-        <form action="{{route('prodotto.malsol.mostra', $prodotto->id)}}" method="GET">
+        <form action="{{route('prodotto.malsol.mostra', $mal->id)}}" method="GET">
             <button type="submit">Vedi dettagli</button>
         </form>
     </div>

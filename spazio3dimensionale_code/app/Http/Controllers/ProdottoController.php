@@ -102,37 +102,25 @@ class ProdottoController
     #Metodo per mostrare una lista di malfunzionamenti del prodotto
     public function mostraListaMalSolProdotto(Request $request, $prodotto_id)
     {
-        /*         $malfunzionamenti = Malsol::where('prodotto_id', $prodotto_id)->get();
-        //TODO da paginare???
-        return view('lista-mal-prodotto')->with('malfunzionamenti', $malfunzionamenti)->with('prodotto_id', $prodotto_id); */
         $parola = $request->ricerca;
-        $malfunzionamenti = Malsol::where('prodotto_id', $prodotto_id)->where('mal', 'LIKE', '%' . $parola . '%')->get();
+        $malfunzionamenti = Malsol::latest()->where('prodotto_id', $prodotto_id)->where('mal', 'LIKE', '%' . $parola . '%')->get();
         $prodotto = Prodotto::findOrFail($prodotto_id);
         return view('lista-mal-prodotto')->with('malfunzionamenti', $malfunzionamenti)->with('prodotto', $prodotto);
     }
 
-    #Metodo per mostrare una lista di malfunzionamenti del prodotto tramite un termine di ricerca
-    public function mostraListaMalSolProdottoRicerca(Request $request, $prodotto_id)
-    {
-        $parola = $request->ricerca;
-        $malfunzionamenti = Malsol::where('prodotto_id', $prodotto_id)->where('mal', 'LIKE', '%' . $parola . '%')->get();
-        //TODO da paginare???
-        return view('lista-mal-prodotto')->with('malfunzionamenti', $malfunzionamenti)->with('prodotto_id', $prodotto_id);
-    }
-
     #Metodo per mostrare il malfunzionamento del prodotto e la sua soluzione
-    public function mostraMalSolProdotto($prodotto_id)
+    public function mostraMalSolProdotto($malsol_id)
     {
-        $malSol = Malsol::findOrFail($prodotto_id);
-        $prodotto = Prodotto::findOrFail($prodotto_id);
-        return view('mostra-mal-sol-prodotto')->with('malSol', $malSol)->with('prodotto', $prodotto);
+        $malsol = Malsol::findOrFail($malsol_id);
+        $prodotto = Prodotto::findOrFail($malsol->prodotto_id);
+        return view('mostra-mal-sol-prodotto')->with('malsol', $malsol)->with('prodotto', $prodotto);
     }
 
     #Metodo per mostrare un form aggiorna malsol 
     public function mostraFormAggiornaMalSol($id)
     {
-        $malSol = Malsol::findOrFail($id);
-        return view("form-aggiorna-mal-sol-prodotto")->with('malSol', $malSol)->with('prodotto_id', $malSol->prodotto_id);
+        $malsol = Malsol::findOrFail($id);
+        return view("form-aggiorna-mal-sol-prodotto")->with('malSol', $malsol)->with('prodotto_id', $malsol->prodotto_id);
     }
 
     #Metodo per aggiornare i malfunzionamenti e la soluzione associata nel DB di un prodotto attarverso un id del prodotto
@@ -144,7 +132,7 @@ class ProdottoController
             'mal'   => $request->input('mal'),
             'sol' => $request->input('sol'),
         ]);
-        return redirect()->route('prodotto.malsol.mostra', ['malSolId' => $id])->with('success', 'Centro aggiornato!');
+        return redirect()->route('prodotto.malsol.mostra', $malsol->id)->with('success', 'Centro aggiornato!');
     }
 
     #Metodo per cancellare i malfunzionamenti e la soluzione associata nel DB di un prodotto attarverso un id del prodotto
