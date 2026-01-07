@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Prodotto;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class ProdottiSeeder extends Seeder
 {
@@ -207,5 +207,25 @@ class ProdottiSeeder extends Seeder
             'consumo_watt' => '2200',
             'volume_stampa' => '15x15x15[cm^3]',
         ]);
+
+        // Usiamo percorsi relativi a storage/app/
+        $cartellaDestinazione = 'public/immagini';
+        $cartellaSeed = 'public/seed';
+
+        // Forza l'uso del disco 'local' per essere sicuri dei percorsi
+        Storage::disk('local')->deleteDirectory($cartellaDestinazione);
+        Storage::disk('local')->makeDirectory($cartellaDestinazione);
+
+        $files = Storage::disk('local')->files($cartellaSeed);
+
+        if (empty($files)) {
+            $this->command->error("Nessun file trovato in: storage/app/" . $cartellaSeed);
+            return;
+        }
+
+        foreach ($files as $file) {
+            $nomeFile = basename($file);
+            Storage::disk('local')->copy($file, $cartellaDestinazione . '/' . $nomeFile);
+        }
     }
 }
