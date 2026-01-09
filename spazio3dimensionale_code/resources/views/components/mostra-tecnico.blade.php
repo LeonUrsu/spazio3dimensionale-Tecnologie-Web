@@ -1,4 +1,4 @@
-@props(['tecnico', 'rottaMostraTecnico', 'rottaCancellaTecnico', 'rottaFormAggiornaTecnico', 'nomeCentro'])
+@props(['tecnico', 'rottaMostraTecnico', 'rottaCancellaTecnico', 'rottaFormAggiornaTecnico', 'nomeCentro', 'specializzazione'])
 <div>
     <div>
         {{ Breadcrumbs::render($rottaMostraTecnico, $tecnico) }}
@@ -6,8 +6,13 @@
     <h4>nome : {{$tecnico->nome}}</h4>
     <h4>cognome : {{$tecnico->cognome}}</h4>
     <h4>data di nascita : {{$tecnico->data_di_nascita}}</h4>
-    <h4>centro assistenza : {{$nomeCentro ?? "nessun centro disponibile"}}</h4>
-    <div class="button-vicici">
+    @if(!empty($nomeCentro))
+    <h4>Centro assistenza: {{$nomeCentro}}</h4>
+    @endif
+    @if(!empty($tecnico->specializzazione))
+    <h4>Specializzazione: {{$tecnico->specializzazione}}</h4>
+    @endif
+    <div class="button-vicini">
         <form action="{{route($rottaFormAggiornaTecnico, $tecnico->id)}}" method="GET">
             <button type="submit">aggiorna</button>
         </form>

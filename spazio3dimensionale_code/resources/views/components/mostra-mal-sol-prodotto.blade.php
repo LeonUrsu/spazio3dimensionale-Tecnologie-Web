@@ -9,7 +9,7 @@
     <p><strong>soluzione :</strong> {{$malsol->sol}}</p>
 
     @can('isTecnicoAzienda')
-    <div class="button-vicici">
+    <div class="button-vicini">
         <form action="{{route('prodotto.malsol.form.aggiorna', $malsol->id)}}" method='GET'>
             <button type="submit">Aggiorna</button>
         </form>

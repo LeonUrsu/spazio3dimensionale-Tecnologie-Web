@@ -14,7 +14,7 @@
     <div>Modalità di installazione: {{$prodotto->modalità_installazione}}</div>
 
     @can('isAdmin')
-    <div class="button-vicici">
+    <div class="button-vicini">
         <form action="{{route('prodotto.cancella', $prodotto->id)}}" method=POST onsubmit="return confirm('Sei sicuro di voler eliminare il prodotto?')">
             @csrf
             @method('DELETE')

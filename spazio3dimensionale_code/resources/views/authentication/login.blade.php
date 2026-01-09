@@ -5,6 +5,9 @@
 {{--//TODO se c'è tempo cambaire il onsubmit std del browser e metterlo personalizzato --}}
 <main>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <form action="{{route('home')}}" class="annulla_left">
+        <button type="submit">Annulla</button>
+    </form>
     <div class="login-container">
         <form action="{{route('login')}}" method="POST">
             @csrf

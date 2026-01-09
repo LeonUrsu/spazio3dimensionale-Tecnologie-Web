@@ -15,7 +15,7 @@
             <p class="nome_centro">{{$centro->nome}}</p>
             <p class="indirizzo_centro">indirizzo : {{$centro->città}}, {{$centro->via}} {{$centro->civico}}</p>
             @can('isAdmin')
-            <div class="button-vicici">
+            <div class="button-vicini">
                 <form action="{{route('centro.form.aggiorna', $centro->id)}}">
                     <button>Modifica</button>
                 </form>

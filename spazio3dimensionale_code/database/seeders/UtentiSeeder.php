@@ -145,7 +145,7 @@ class UtentiSeeder extends Seeder
         ]);
 
         //Altri tecnici centro-----------------------
-        // Creazione Tecnico Centro Assistenza 1
+        // 1. Fabio Serra
         User::create([
             'data_di_nascita' => '1999-05-19',
             'role' => 'isTecnicoCentro',
@@ -153,10 +153,11 @@ class UtentiSeeder extends Seeder
             'password' => 'hJ9ShJ9S',
             'centro_id' => '1',
             'nome' => "Fabio",
-            'cognome' => "Serra"
+            'cognome' => "Serra",
+            'specializzazione' => "Calibrazione estrusori e livellamento piatto"
         ]);
 
-        // Creazione Tecnico Centro Assistenza 2
+        // 2. Marta Giorgi
         User::create([
             'data_di_nascita' => '1999-05-19',
             'role' => 'isTecnicoCentro',
@@ -164,10 +165,11 @@ class UtentiSeeder extends Seeder
             'password' => 'hJ9ShJ9S',
             'centro_id' => '2',
             'nome' => "Marta",
-            'cognome' => "Giorgi"
+            'cognome' => "Giorgi",
+            'specializzazione' => "Manutenzione stampanti a resina (SLA/DLP)"
         ]);
 
-        // Creazione Tecnico Centro Assistenza 3
+        // 3. Simone Lombardi
         User::create([
             'data_di_nascita' => '1999-05-19',
             'role' => 'isTecnicoCentro',
@@ -175,10 +177,11 @@ class UtentiSeeder extends Seeder
             'password' => 'hJ9ShJ9S',
             'centro_id' => '3',
             'nome' => "Simone",
-            'cognome' => "Lombardi"
+            'cognome' => "Lombardi",
+            'specializzazione' => "Riparazione meccanica e sistemi CoreXY"
         ]);
 
-        // Creazione Tecnico Centro Assistenza 4
+        // 4. Claudia Moretti
         User::create([
             'data_di_nascita' => '1999-05-19',
             'role' => 'isTecnicoCentro',
@@ -186,10 +189,11 @@ class UtentiSeeder extends Seeder
             'password' => 'hJ9ShJ9S',
             'centro_id' => '4',
             'nome' => "Claudia",
-            'cognome' => "Moretti"
+            'cognome' => "Moretti",
+            'specializzazione' => "Ottimizzazione profili di slicing e materiali avanzati"
         ]);
 
-        // Creazione Tecnico Centro Assistenza 5
+        // 5. Davide Barbieri
         User::create([
             'data_di_nascita' => '1999-05-19',
             'role' => 'isTecnicoCentro',
@@ -197,10 +201,11 @@ class UtentiSeeder extends Seeder
             'password' => 'hJ9ShJ9S',
             'centro_id' => '5',
             'nome' => "Davide",
-            'cognome' => "Barbieri"
+            'cognome' => "Barbieri",
+            'specializzazione' => "Elettronica di controllo e sostituzione schede madri"
         ]);
 
-        // Creazione Tecnico Centro Assistenza 6
+        // 6. Sara Marini
         User::create([
             'data_di_nascita' => '1999-05-19',
             'role' => 'isTecnicoCentro',
@@ -208,10 +213,11 @@ class UtentiSeeder extends Seeder
             'password' => 'hJ9ShJ9S',
             'centro_id' => '6',
             'nome' => "Sara",
-            'cognome' => "Marini"
+            'cognome' => "Marini",
+            'specializzazione' => "Configurazione firmware Marlin e Klipper"
         ]);
 
-        // Creazione Tecnico Centro Assistenza 7
+        // 7. Pietro Vitali
         User::create([
             'data_di_nascita' => '1999-05-19',
             'role' => 'isTecnicoCentro',
@@ -219,10 +225,11 @@ class UtentiSeeder extends Seeder
             'password' => 'hJ9ShJ9S',
             'centro_id' => '7',
             'nome' => "Pietro",
-            'cognome' => "Vitali"
+            'cognome' => "Vitali",
+            'specializzazione' => "Sostituzione schermi LCD e sorgenti UV"
         ]);
 
-        // Creazione Tecnico Centro Assistenza 8
+        // 8. Anna Guerra
         User::create([
             'data_di_nascita' => '1999-05-19',
             'role' => 'isTecnicoCentro',
@@ -230,10 +237,11 @@ class UtentiSeeder extends Seeder
             'password' => 'hJ9ShJ9S',
             'centro_id' => '8',
             'nome' => "Anna",
-            'cognome' => "Guerra"
+            'cognome' => "Guerra",
+            'specializzazione' => "Manutenzione sistemi multi-materiale (MMU/AMS)"
         ]);
 
-        // Creazione Tecnico Centro Assistenza 9
+        // 9. Matteo De Luca
         User::create([
             'data_di_nascita' => '1999-05-19',
             'role' => 'isTecnicoCentro',
@@ -241,10 +249,11 @@ class UtentiSeeder extends Seeder
             'password' => 'hJ9ShJ9S',
             'centro_id' => '9',
             'nome' => "Matteo",
-            'cognome' => "De Luca"
+            'cognome' => "De Luca",
+            'specializzazione' => "Sistemi di estrusione high-temperature e materiali tecnici"
         ]);
 
-        // Creazione Tecnico Centro Assistenza 10
+        // 10. Elisa Riva
         User::create([
             'data_di_nascita' => '1999-05-19',
             'role' => 'isTecnicoCentro',
@@ -252,7 +261,8 @@ class UtentiSeeder extends Seeder
             'password' => 'hJ9ShJ9S',
             'centro_id' => '10',
             'nome' => "Elisa",
-            'cognome' => "Riva"
+            'cognome' => "Riva",
+            'specializzazione' => "Diagnostica hardware e sensori di fine filamento"
         ]);
     }
 }
