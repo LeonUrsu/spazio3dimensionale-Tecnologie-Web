@@ -14,8 +14,7 @@ class AuthenticationController
         return view("authentication/login");
     }
 
-
-
+    #Metodo per gestire il login dell'utente
     public function login(Request $request)
     {
         // 1. Validazione
@@ -42,6 +41,7 @@ class AuthenticationController
         ]);
     }
 
+    #Metodo per gestire il logout del utente 
     public function logout(Request $request)
     {
         Auth::logout();

@@ -11,7 +11,6 @@ class TecnicoAziendaController
 
     public function mostraListaTecnici()
     {
-        //TODO mettere limite a quanti tecnici da recuperare        
         $tecnici = User::latest()->where('role', 'isTecnicoAzienda')->paginate(10);
         return view('lista-tecnico-azienda')->with("tecnici", $tecnici);;
     }
@@ -42,7 +41,7 @@ class TecnicoAziendaController
             'password' => 'nullable|min:6',
         ]);
         $dati = $validated;
-    
+
         if (!empty($validated['password'])) {
             $dati['password'] = bcrypt($validated['password']);
         } else {
@@ -53,11 +52,16 @@ class TecnicoAziendaController
         return redirect()->route('tecnico.azienda.mostra', $tecnico->id)->with('info', 'Tecnico aggiornato correttamente!');
     }
 
+    //TODO funione aggiuntiva per voto maggiore
+    #Metodo per mostrare un form dove si indicano i prodotti da asseganre a ciascun tecnico in modo che lui gestisca le proprie funzionalità
     public function mostraListaAssegna(): string
     {
         return "mostra lista dei prodotti con spunta per assegnaProdottiTecnicoAzienda";
     }
 
+
+    //TODO funione aggiuntiva per voto maggiore
+    #Metodo per asseganre a ciascun tecnico in modo che lui gestisca le proprie funzionalità
     public function assegnaProdotti(): string
     {
         return "salva le spunte di assegna prodotto al tecnico";

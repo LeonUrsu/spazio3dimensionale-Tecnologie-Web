@@ -9,6 +9,7 @@ use Carbon\Carbon;
 
 class TecnicoCentroController
 {
+    #Metodo per mostrare la lista dei tecnici
     public function mostraListaTecnici()
     {
         $tecnici = User::latest()->where('role', 'isTecnicoCentro')->paginate(10);

@@ -14,6 +14,7 @@ class CentroAssistenzaController
         return view("lista-centri")->with("centri", $centri);
     }
 
+    #Metodo per mostrare in centro //TODO si potrebbe implementare per 
     public function mostraCentro(): string
     {
         return "mostra Centri";
@@ -29,24 +30,26 @@ class CentroAssistenzaController
     #Aggiorna nel DB i dati del centro modificati //TODO? si potrebbe modificare solo i dati cambiati per risparmiare risorse
     public function aggiornaCentro(Request $request, $id)
     {
-        //TODO validare la richiesta prima di compilare i campi
         $centro = Centro::findOrFail($id);
-        $centro->nome = $request->nome;
-        $centro->stato = $request->stato;
-        $centro->città = $request->città;
-        $centro->cap = $request->cap;
-        $centro->via = $request->via;
-        $centro->civico = $request->civico;
-        $centro->save();
-        #return redirect()->route('centro-lista')->with('info', 'Centro aggiornato correttamente!');
+        $validated = $request->validate([
+            'nome'   => 'required|string|max:200',
+            'stato'  => 'required|string|max:50',
+            'città'  => 'required|string|max:50',
+            'cap'    => 'required|digits:5',
+            'via'    => 'required|string|max:100',
+            'civico' => 'required|string|max:50',
+        ]);
+        $centro->update($validated);
         return redirect()->route('centro.lista');
     }
 
+    #Metodo
     public function mostraFormCrea()
     {
         return view("form-crea-centro");
     }
 
+    #Metodo per creare del DB un centro validando la richiesta in arrivo
     public function creaCentro(Request $request)
     {
         $validated = $request->validate([

@@ -9,31 +9,10 @@ use Illuminate\Support\Facades\File;
 
 class ProdottoController
 {
-
-    /* 
-    //TODO da sistemare e da riprogettare
-    #Metodo per mostrare un catalogo dei prodotti all'utente filtrati tramite un termine di ricerca o un temine di ricerca parziale
-    public function mostraListaProdotti(Request $request)
-    {
-        $parola = $request->input('ricerca'); //recupero della parola dal campo ''desc
-        if (empty(trim($parola))) {
-            $prodotti = Prodotto::latest()->paginate(10);
-            return view('lista-prodotti', compact('prodotti'))->with('parola', '');
-        }
-        if (str_ends_with($parola, '*')) {
-            $base = rtrim($parola, '*');
-            $prodotti = Prodotto::latest()->where('descrizione', 'LIKE', '%' . $base . '%')->paginate(10);
-        } else {
-            $prodotti = Prodotto::latest()->where('descrizione', 'REGEXP', '[[:<:]]' . $parola . '[[:>:]]')->paginate(10);   // dobbiamo cercare "lav" come parola isolata (non dentro altre parole)
-        }
-        return view('lista-prodotti')-> with("prodotti", $prodotti);
-    } */
-
     public function mostraListaProdotti(Request $request)
     {
         $parola = $request->input('ricerca');
-        $query = Prodotto::latest(); // Usiamo latest() per vedere i nuovi prodotti in alto
-
+        $query = Prodotto::latest(); 
         if (!empty(trim($parola))) {
             if (str_ends_with($parola, '*')) {
                 // Logica per ricerca parziale (es. lav*)
@@ -41,19 +20,14 @@ class ProdottoController
                 $query->where('descrizione', 'LIKE', '%' . $base . '%');
             } else {
                 // Logica per parola esatta (usando REGEXP o semplice LIKE)
-                // Nota: REGEXP [[:<:]] potrebbe non funzionare su tutti i DB (es. versioni nuove di MySQL/MariaDB)
-                // Se dà errore, usa: $query->where('descrizione', 'LIKE', '%' . $parola . '%');
+                // Nota: REGEXP [[:<:]] potrebbe non funzionare su tutti i DB
                 $query->where('descrizione', 'REGEXP', '[[:<:]]' . $parola . '[[:>:]]');
             }
         }
-
         $prodotti = $query->paginate(7);
-        // Gestione AJAX
         if ($request->ajax()) {
             return view('prodotto._lista-prodotti', compact('prodotti'))->render();
         }
-
-        // Caricamento normale della pagina
         return view('lista-prodotti', compact('prodotti'));
     }
 
@@ -188,7 +162,6 @@ class ProdottoController
     #Metodo per cancellare i malfunzionamenti e la soluzione associata nel DB di un prodotto attarverso un id del prodotto
     public function cancellaMalSol(Request $request, $id)
     {
-
         $malSol = Malsol::findOrFail($id);
         $malSol->delete();
         return redirect()->route('prodotto.malsol.lista', ['prodottoId' => $malSol->prodotto_id]);
