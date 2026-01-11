@@ -9,6 +9,7 @@ use Carbon\Carbon;
 class TecnicoAziendaController
 {
 
+    #Metodo per mostrare la lista dei tecnici azienda
     public function mostraListaTecnici()
     {
         $tecnici = User::latest()->where('role', 'isTecnicoAzienda')->paginate(10);
@@ -52,7 +53,7 @@ class TecnicoAziendaController
         return redirect()->route('tecnico.azienda.mostra', $tecnico->id)->with('info', 'Tecnico aggiornato correttamente!');
     }
 
-    //TODO funione aggiuntiva per voto maggiore
+    //TODO funione aggiuntiva per voto esame maggiore
     #Metodo per mostrare un form dove si indicano i prodotti da asseganre a ciascun tecnico in modo che lui gestisca le proprie funzionalità
     public function mostraListaAssegna(): string
     {
@@ -60,7 +61,7 @@ class TecnicoAziendaController
     }
 
 
-    //TODO funione aggiuntiva per voto maggiore
+    //TODO funione aggiuntiva per voto esame maggiore
     #Metodo per asseganre a ciascun tecnico in modo che lui gestisca le proprie funzionalità
     public function assegnaProdotti(): string
     {

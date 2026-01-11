@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\File;
 
 class ProdottoController
 {
+    #Metodo per mostrare la lista dei prodotti, inoltre nella request è possibile passare il termine di ricerva come 
+    #wild-chart ed eseguire la ricerca più generica
     public function mostraListaProdotti(Request $request)
     {
         $parola = $request->input('ricerca');
@@ -30,8 +32,6 @@ class ProdottoController
         }
         return view('lista-prodotti', compact('prodotti'));
     }
-
-
 
     #Metodo per trovare mostrare il prodotto all'utente
     public function mostraProdotto($id)

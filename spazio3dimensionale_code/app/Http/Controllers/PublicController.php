@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class PublicController # Controller che gestisce le interazione degli utenti non loggati
 {
 
-
+    #metodo per mostrare la home agli utenti con il conteggio degli oggetti nelle tabelle del DB
     public function mostraHome()
     {
         $n_centri = Centro::count();
@@ -25,28 +25,13 @@ class PublicController # Controller che gestisce le interazione degli utenti non
         return view("login");
     }
 
-
-    public function test(): string
-    {
-        return "test e basta";
-    }
-
-    public function testdb(): string
-    {
-        return "test db";
-    }
-
-    public function testWeb(): string
-    {
-        return "test web" . "<br>" . "altro";
-    }
-
-
+    #Metodo per recuperare la form di autenticazione del utente
     public function getform()
     {
         return view("authentication/login");
     }
 
+    #Metodo per trasmettere i dati della form
     public function postform(Request $request)
     {
         echo ([$request->input("username"), $request->input("password")]);

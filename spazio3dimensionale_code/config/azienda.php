@@ -1,5 +1,6 @@
 <?php
 
+#Questi sono i dati che verranno caricati nel footer del sito
 return [
     'telefono' => env('SITE_PHONE', '+39 000 000000'),
     'email' => env('SITE_EMAIL', 'adminSpazio3Dimensionale@example.com'),

@@ -39,19 +39,5 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('isTecnico', function ($user) {
             return $user->can('isTecnicoAzienda') || $user->can('isTecnicoCentro');
         });
-
-
-
-        /*
-        4. Come usarli nelle View (Blade)
-        Il bello dei Gate è che funzionano anche per nascondere o mostrare pezzi di interfaccia. Nel tuo file .blade.php:
-        HTML
-        @can('isAdmin')
-            <button>Elimina Database (Solo Admin)</button>
-        @endcan
-
-        @can('isTecnico')
-            <p>B
-        */
     }
 }
