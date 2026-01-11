@@ -22,7 +22,7 @@
         <form action="{{route($rottaFormAggiornaTecnico, $tecnico->id)}}" method="GET">
             <button type="submit">aggiorna</button>
         </form>
-        <form action="{{route($rottaCancellaTecnico, $tecnico->id)}}" method="POST" onsubmit="return confirm('Eliminare il tecnico?')">
+        <form action="{{route($rottaCancellaTecnico, $tecnico->id)}}" method="POST" class="form-conferma">
             @method('DELETE')
             <button type="submit">elimina</button>
         </form>

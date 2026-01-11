@@ -1,6 +1,6 @@
 @props(['action', 'prodotto'=>null, 'metodo'=>'POST', 'indietro'])
 <div>
-    <form action="{{$action}}" method="POST" enctype="multipart/form-data" class="element_with_button_column" onsubmit="return confirm('Sei sicuro di voler salvare le modifiche?')">
+    <form action="{{$action}}" method="POST" enctype="multipart/form-data" class="element_with_button_column form-conferma">
         @csrf
         @if($metodo == 'PUT') @method('PUT') @endif
         {{--potrei aggiungere una box per fare drag and drop delle foto del prodotto--}}

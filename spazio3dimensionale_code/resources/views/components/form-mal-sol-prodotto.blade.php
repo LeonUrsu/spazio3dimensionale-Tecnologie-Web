@@ -1,7 +1,7 @@
 {{--i l crea dovrebbe stare dentro il prodotto così si passa l'id prodotto da associare al malSol--}}
 @props(['action', 'malSol'=>null, 'method'=>'POST', 'prodotto_id'])
 <div class="element_with_button_column">
-    <form action="{{$action}}" method="POST" onsubmit="return confirm('Sei sicuro di voler salvare le modifiche?')">
+    <form action="{{$action}}" method="POST" class="form-conferma">
         @csrf
         @if($method == 'PUT') @method('PUT') @endif
         <input type="hidden" name="prodotto_id" value={{$prodotto_id}}>

@@ -15,7 +15,7 @@
 
     @can('isAdmin')
     <div class="button-vicini">
-        <form action="{{route('prodotto.cancella', $prodotto->id)}}" method=POST onsubmit="return confirm('Sei sicuro di voler eliminare il prodotto?')">
+        <form action="{{route('prodotto.cancella', $prodotto->id)}}" method=POST class="form-conferma">
             @csrf
             @method('DELETE')
             <button type="submit">elimina Prodotto</button>

@@ -18,7 +18,7 @@
         <div class="menu-box">
             <form action="{{route('centro.lista')}}" method=GET>
                 @csrf
-                <button class="menu-button" type="submit">Centri Disponibili</button>
+                <button class="menu-button" type="submit">Centri Assistenza</button>
             </form>
 
             <form action="{{route('prodotto.lista')}}" method=GET>
@@ -43,7 +43,7 @@
             @endguest
 
             @auth
-            <form action="{{route('logout')}}" method=POST onsubmit="return confirm('Sei sicuro di voler procedere con il logout?')">
+            <form action="{{route('logout')}}" method=POST class="form-conferma">
                 @csrf
                 <button type="submit">Logout</button>
             </form>
@@ -62,7 +62,7 @@
         <p> Vineni a trovarci in: {{ config('azienda.indirizzo') }} </p>
         <p> Orari a: {{ config('azienda.orari') }} </p>
         <p>
-            <a href="{{ asset('storage/documentazione.pdf') }}" target="_blank" class="docs">Leggi la Documentazione (PDF)</a>
+            <a href="{{ asset('docs/documentazione_spazio3Dimensionale.pdf') }}" target="_blank" class="docs">Leggi la Documentazione (PDF)</a>
         </p>
         <p>
             <a href="https://github.com/LeonUrsu/spazio3dimensionale-Tecnologie-Web.git" target="_blank" class="docs">Vai al progetto su GitHub</a>
@@ -71,6 +71,8 @@
         <p> Esame Tecnologie Web Spazio3dimensionale </p>
         <p> Developer a: {{ config('azienda.developer') }} </p>
     </footer>
+    <x-modal-conferma />
+    <script src="{{ asset('js/conferma.js') }}"></script>
 </body>
 
 </html>

@@ -52,8 +52,8 @@ class ProdottoController
     public function aggiornaProdotto(Request $request, $id)
     {
         $validated = $request->validate([
-            'marca' => 'required|string|max:50',
-            'modello' => 'required|string|max:100',
+            'marca' => 'nullable|string|max:50',
+            'modello' => 'required|string|max:50',
             'descrizione' => 'required|string|min:10',
             'modalità_installazione' => 'nullable|string',
             'dimensioni' => 'nullable|string|max:50',
@@ -91,13 +91,13 @@ class ProdottoController
         $validated = $request->validate([
             'immagine' => 'required|image|mimes:jpeg,png,jpg,gif',
             'marca' => 'required|string|max:50',
-            'modello' => 'required|string|max:100',
+            'modello' => 'required|string|max:500',
             'descrizione' => 'required|string|min:10',
             'modalità_installazione' => 'required|string',
             'dimensioni' => 'required|string|max:50',
             'peso' => 'required|numeric',
             'consumo_watt' => 'required|numeric',
-            'volume_stampa' => 'required|string|min:10|max:50'
+            'volume_stampa' => 'required|string|min:3|max:50'
         ]);
         if ($request->hasFile('immagine')) {
             $file_caricato = $request->file('immagine');

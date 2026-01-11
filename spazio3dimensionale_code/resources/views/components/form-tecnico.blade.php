@@ -1,6 +1,6 @@
 @props(['rotta', 'tecnico' => null, 'metodo' => 'POST', 'indietro'])
 <div>
-    <form action="{{route($rotta, $tecnico?->id)}}" method="POST" class="element_with_button_column" onsubmit="return confirm('Sei sicuro di voler salvare le modifiche?')">
+    <form action="{{route($rotta, $tecnico?->id)}}" method="POST" class="element_with_button_column" class="form-conferma">
         @csrf
         @if($metodo == 'PUT') @method('PUT') @endif {{--put per gli aggiornamenti laravel--}}
         @if ($errors->any())

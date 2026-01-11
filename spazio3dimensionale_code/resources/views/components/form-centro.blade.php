@@ -1,7 +1,7 @@
 @props(['rotta', 'centro'=> null, 'metodo'=>'POST'])
 <div>
     <p>
-    <form action="{{ $centro ? route($rotta, $centro->id) : route($rotta) }}" method="POST" onsubmit="return confirm('Sei sicuro di voler salvare le modifiche?')"> @csrf
+    <form action="{{ $centro ? route($rotta, $centro->id) : route($rotta) }}" method="POST" class="form-conferma"> @csrf
         @if($metodo == 'PUT') @method('PUT') @endif
         <div class="element_with_button_column">
             <div>
