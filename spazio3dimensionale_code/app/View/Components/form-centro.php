@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class form-centro extends Component
+class FormCentro extends Component
 {
     /**
      * Create a new component instance.
