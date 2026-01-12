@@ -6,6 +6,7 @@ use App\Models\Malsol;
 use App\Models\Prodotto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProdottoController
 {
@@ -59,22 +60,26 @@ class ProdottoController
             'peso' => 'nullable|numeric',
             'consumo_watt' => 'nullable|numeric',
             'volume_stampa' => 'nullable|string|max:50',
+            'immagine' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
-        $prodotto = Prodotto::findOrFail($id);;
-        if ($request->hasFile('immagine')) {
-            $vecchioPercorso = public_path('storage/immagini' . $prodotto->immagine);
-            if (File::exists($vecchioPercorso) && !empty($prodotto->immagine)) {
-                File::delete($vecchioPercorso);
-            }
-            $file_caricato = $request->file('immagine');
-            $nomeImmagine = time() . '.' . $file_caricato->getClientOriginalExtension();
-            $file_caricato->move(public_path('storage/immagini'), $nomeImmagine);
-            $validated['immagine_path'] = $nomeImmagine;
-        } else {
-            unset($validated['immagine']);
-        }
+
+
         $prodotto = Prodotto::findOrFail($id);
+        if ($request->hasFile('immagine')) {
+            $file = $request->file('immagine');
+            // Crea un nome unico per l'immagine
+            $nomeNuovo = time() . '_' . $file->getClientOriginalName();
+            // Sposta l'immagine nella cartella public/immagini
+            $file->move(public_path('immagini'), $nomeNuovo);
+            // Cancella la vecchia immagine se esiste
+            if ($prodotto->immagine_path && file_exists(public_path('immagini/' . $prodotto->immagine_path))) {
+                unlink(public_path('immagini/' . $prodotto->immagine_path));
+            }
+            // Aggiorna il nome dell'immagine nel database
+            $validated['immagine_path'] = $nomeNuovo;
+        }
         $prodotto->update($validated);
+
         return redirect()->route('prodotto.mostra', $prodotto->id);
     }
 

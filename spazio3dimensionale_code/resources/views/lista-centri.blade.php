@@ -1,3 +1,3 @@
 <x-base>
-    <x-lista-centri :$centri/>
+    <x-lista-centri :centri="$centri" />
 </x-base>

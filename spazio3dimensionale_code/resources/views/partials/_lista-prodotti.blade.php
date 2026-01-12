@@ -2,7 +2,7 @@
 <div style="display: flex; gap: 20px; align-items: center;" class="element">
     <div>
         @if($prodotto->immagine_path)
-        <img src="{{ asset('storage/immagini/' . $prodotto->immagine_path) }}" alt="Foto" style="width: 100px; height: 100px; object-fit: cover;">
+        <img src="{{ asset('immagini/' . $prodotto->immagine_path) }}" alt="Foto" style="width: 100px; height: 100px; object-fit: cover;">
         @else
         <img src="{{ asset('immagini/default.png') }}" alt="Immagine non disponibile" style="width: 100px; height: 100px; object-fit: cover;">
         @endif

@@ -8,12 +8,13 @@ use Illuminate\View\Component;
 
 class ListaCentri extends Component
 {
+    public $centri;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($centri)
     {
-        //
+        $this->centri = $centri;
     }
 
     /**

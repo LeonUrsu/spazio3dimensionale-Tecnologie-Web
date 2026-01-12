@@ -14,20 +14,21 @@ class ProdottiSeeder extends Seeder
      */
     public function run(): void
     {
-        //seeding delle foto
-        $pathDestinazione = storage_path('app/public/immagini');
-        $pathSeed = storage_path('app/public/seed');
+        $pathDestinazione = public_path('immagini');
+        $pathSeed = storage_path('app/public/immagini');
 
         if (File::exists($pathDestinazione)) {
-            File::cleanDirectory($pathDestinazione);
+            File::cleanDirectory($pathDestinazione); // cancella tutto dentro
         } else {
-            File::makeDirectory($pathDestinazione, 0755, true);
+            File::makeDirectory($pathDestinazione, 0755, true); // crea la cartella se non esiste
         }
 
-        // COPIA IMMAGINI
+        //Copia tutte le immagini dalla cartella di storage
         if (File::exists($pathSeed)) {
             File::copyDirectory($pathSeed, $pathDestinazione);
-            $this->command->info("Immagini caricate nello storage.");
+            $this->command->info("Tutte le immagini sono state copiate in public/immagini.");
+        } else {
+            $this->command->error("La cartella di origine non esiste: $pathSeed");
         }
 
 
@@ -210,7 +211,5 @@ class ProdottiSeeder extends Seeder
             'consumo_watt' => '2200',
             'volume_stampa' => '15x15x15[cm^3]',
         ]);
-
-
     }
 }

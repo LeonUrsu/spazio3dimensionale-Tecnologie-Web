@@ -3,7 +3,7 @@
     <div>
         {{ \Diglactic\Breadcrumbs\Breadcrumbs::render('prodotto.mostra', $prodotto) }}
     </div>
-    <img src="{{ asset('storage/immagini/' . $prodotto->immagine_path) }}" alt="Immagine Prodotto" class="img_home">
+    <img src="{{ asset('immagini/' . $prodotto->immagine_path) }}" alt="Immagine Prodotto" class="img_home">
     <div>Informazioni su {{$prodotto->marca}} {{$prodotto->modello}}</div>
     <div>Descrizione: {{$prodotto->descrizione}}</div>
     <div>Dimensioni: {{$prodotto->dimensioni}}</div>

@@ -11,7 +11,7 @@ class CentroAssistenzaController
     public function mostraListaCentri()
     {
         $centri = Centro::latest()->paginate(10);
-        return view("lista-centri")->with("centri", $centri);
+        return view("lista-centri", compact('centri'));
     }
 
     #Metodo per mostrare in centro //TODO si potrebbe implementare per 
