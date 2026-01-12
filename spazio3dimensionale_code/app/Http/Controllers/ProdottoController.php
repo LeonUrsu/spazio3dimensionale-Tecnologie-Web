@@ -76,7 +76,7 @@ class ProdottoController
         }
         $prodotto = Prodotto::findOrFail($id);
         $prodotto->update($validated);
-        return redirect()->route('prodotto.lista');
+        return redirect()->route('prodotto.mostra', $prodotto->id);
     }
 
     #Metodo per mostrare all'utente la form per aggiornare i dati di un prodotto
