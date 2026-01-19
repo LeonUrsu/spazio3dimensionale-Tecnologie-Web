@@ -25,9 +25,9 @@ class AuthenticationController
 
         // 2. Tentativo di login
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            $request->session()->regenerate(); //nuovo id
 
-            // 3. Reindirizzamento basato sul ruolo
+            // 3. Reindirizzamento basato sul ruolo, cioè recupera l'utente
             $user = Auth::user();
 
             if ($user->role === 'isAdmin' || $user->role === 'isTecnicoCentro' || $user->role === 'isTecnicoAzienda') {
@@ -46,7 +46,7 @@ class AuthenticationController
     {
         Auth::logout();
         $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $request->session()->regenerateToken(); //rigenera token csfr
         return redirect('/login');
     }
 }

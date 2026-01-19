@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive(); //serve per mostrare correttamente le paginazioni
-
+        
         Gate::define('isAdmin', function (User $user) {
             return $user->role === 'isAdmin';
         });

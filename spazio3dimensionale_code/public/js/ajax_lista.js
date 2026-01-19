@@ -1,5 +1,3 @@
-//TODO capire bene come funziona altrimenti ...
-
 //Metodo per gestire le funzionalità ajax, usato per l'iniezione delle componenti della lista dei prodotti del catalogo
 $(document).ready(function () {
     // Gestione della ricerca
@@ -7,7 +5,6 @@ $(document).ready(function () {
         e.preventDefault();
         let url = $(this).attr('action');
         let dati = $(this).serialize();
-
         $.ajax({
             url: url,
             data: dati,
@@ -29,3 +26,8 @@ $(document).ready(function () {
         });
     });
 });
+
+
+
+
+
